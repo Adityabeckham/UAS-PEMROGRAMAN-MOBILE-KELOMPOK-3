@@ -60,7 +60,7 @@ git commit -m "fix: memperbaiki tombol login yang tidak bisa diklik"
 ### Langkah 5: Push Branch ke GitHub
 Jika tugas sudah selesai sepenuhnya sesuai Requirement di TASK_MANAGEMENT.md, kirim branch Anda ke GitHub.
 ```bash
-git git push origin nama-branch-anda
+git push origin nama-branch-anda
 ```
 ### Langkah 6: Buka Pull Request (PR) & Link Kanban
 ```bash
