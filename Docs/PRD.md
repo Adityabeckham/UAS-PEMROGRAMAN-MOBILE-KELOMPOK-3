@@ -47,12 +47,11 @@ Aplikasi mobile berbasis Android yang memfasilitasi proses assessment klien. Sis
 * **Collection `sessions`:** Menyimpan status tes, jawaban (map), dan timestamp terakhir untuk kebutuhan real-time monitoring.
 
 ---
-
 ## 6. Alur Sistem End-to-End (Logic Workflow)
 
 Alur aplikasi ini dibagi menjadi dua siklus yang saling terhubung antara Klien (HR) dan Peserta:
 
-**Fase 1: Persiapan Klien Perusahaan (HRD)**
+**Fase 1: Persiapan Klien (HRD)**
 1. Klien membuka aplikasi dan melakukan login (F01).
 2. Klien masuk ke Dashboard dan mendaftarkan kandidat peserta baru (F02).
 3. Sistem menghasilkan Token 6-digit dan Klien mendistribusikannya ke Peserta (F03).
@@ -65,6 +64,9 @@ Alur aplikasi ini dibagi menjadi dua siklus yang saling terhubung antara Klien (
 **Fase 3: Penyelesaian (Klien)**
 7. Setelah Peserta menekan tombol "Selesai", sistem mengkalkulasi nilai.
 8. Klien membuka menu Laporan untuk melihat skor akhir dan mengunduh detail hasilnya (F07).
+
+---
+
 ---
 
 ## 7. Rencana Pengembangan (Roadmap)
@@ -72,3 +74,5 @@ Alur aplikasi ini dibagi menjadi dua siklus yang saling terhubung antara Klien (
 * **Sprint 2:** Implementasi modul input peserta dan sistem email token.
 * **Sprint 3:** Implementasi modul Assessment (pengerjaan soal) dan sinkronisasi real-time.
 * **Sprint 4:** Laporan `README.md` project dan Quality Assurance (Testing).
+  
+---
