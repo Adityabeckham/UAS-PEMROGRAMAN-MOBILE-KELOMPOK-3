@@ -28,6 +28,7 @@ Agar tidak terjadi *Merge Conflict* (kode yang bertabrakan dan rusak), **setiap 
 * Buka tab **Projects** di GitHub.
 * Pilih tugas di kolom **To Do**.
 * Klik tugas tersebut, assign ke nama Anda ("Assign to me").
+* Klik "Create New Branch for this issues or link  a pull request", lalu buat Branch sesuai dengan nama issue.
 * Pindahkan kartu tugas tersebut ke kolom **In Progress**.
 
 ### Langkah 2: WAJIB Update Kode Lokal (Sync)
@@ -43,10 +44,10 @@ git pull origin main
 
 ```
 ### Langkah 3: Buat Branch Fitur Baru
-Setelah main Anda up-to-date, barulah buat branch baru khusus untuk tugas Anda. Gunakan format feature/nama-tugas atau fix/nama-bug.
+Karena Anda sudah membuat branch dari GitHub UI di Langkah 1, Anda hanya perlu menarik data branch tersebut ke laptop Anda. Buka terminal dan ketik:
 ```bash
-git checkout -b feature/tugas-anda
-# Contoh: git checkout -b feature/ui-login
+git fetch origin
+git checkout nama-branch-anda
 ```
 ### Langkah 4: Koding dan Commit Berkala
 Silakan kerjakan tugas Anda di Android Studio. Lakukan commit secara berkala jika ada progres (jangan menunggu sampai semua selesai baru di-commit). Gunakan pesan yang jelas:
@@ -59,7 +60,7 @@ git commit -m "fix: memperbaiki tombol login yang tidak bisa diklik"
 ### Langkah 5: Push Branch ke GitHub
 Jika tugas sudah selesai sepenuhnya sesuai Requirement di TASK_MANAGEMENT.md, kirim branch Anda ke GitHub.
 ```bash
-git push origin feature/tugas-anda
+git git push origin nama-branch-anda
 ```
 ### Langkah 6: Buka Pull Request (PR) & Link Kanban
 ```bash
