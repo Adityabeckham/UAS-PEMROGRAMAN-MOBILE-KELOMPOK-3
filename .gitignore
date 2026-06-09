@@ -1,15 +1,17 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+# Memblokir seluruh folder konfigurasi IDE & Build (Wajib)
+.idea/
+.gradle/
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Memblokir file lokal & spesifik (Wajib)
 local.properties
+*.iml
+.DS_Store
+
+# Memblokir kredensial Firebase & Keamanan (Sangat Disarankan untuk UAS)
+google-services.json
+*.jks
+*.keystore
