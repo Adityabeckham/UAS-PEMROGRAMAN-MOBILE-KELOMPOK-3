@@ -21,13 +21,15 @@ Aplikasi mobile berbasis Android yang memfasilitasi proses assessment klien. Sis
 
 | ID | Fitur | User Story | Prioritas |
 | :--- | :--- | :--- | :--- |
-| F01 | Autentikasi | Sebagai pengguna, saya ingin login agar dapat mengakses dashboard sesuai peran saya. | P0 |
-| F02 | Manajemen Peserta | Sebagai Klien, saya ingin menginput data peserta agar mereka terdaftar di sistem. | P0 |
-| F03 | Distribusi Token | Sebagai Klien, saya ingin sistem mengirimkan token otomatis ke email peserta. | P1 |
-| F04 | Login Klien | Sebagai Peserta, saya ingin login ke portal test assesment menggunakan token generate dari klien. | P0 |
-| F05 | Sesi Tes | Sebagai Peserta, saya ingin menjawab soal agar proses assessment berjalan. | P0 |
-| F06 | Monitoring Real-time | Sebagai Klien, saya ingin melihat progres tes peserta secara langsung. | P1 |
-| F07 | Laporan Hasil | Sebagai Klien, saya ingin mengunduh laporan hasil tes peserta. | P2 |
+| F01 | Autentikasi HR | Sebagai Klien (HR), saya ingin login dengan email dan password agar dapat mengakses dashboard manajemen. | P0 |
+| F02 | Manajemen Peserta | Sebagai Klien, saya ingin menginput data peserta baru agar mereka terdaftar di dalam sistem assessment. | P0 |
+| F03 | Distribusi Token | Sebagai Klien, saya ingin sistem memunculkan dan mengirimkan token unik otomatis untuk akses tes peserta. | P1 |
+| F04 | Login Peserta | Sebagai Peserta, saya ingin login ke portal assessment menggunakan token yang di-generate oleh Klien. | P0 |
+| F05 | Sesi Tes | Sebagai Peserta, saya ingin menjawab soal dengan antarmuka yang fokus agar proses assessment berjalan lancar. | P0 |
+| F06 | Monitoring Real-time | Sebagai Klien, saya ingin melihat progres pengerjaan tes peserta secara langsung (live) dari dashboard. | P1 |
+| F07 | Laporan Hasil | Sebagai Klien, saya ingin mengunduh laporan skor dan hasil tes peserta yang sudah selesai. | P2 |
+
+---
 
 ---
 
@@ -46,11 +48,23 @@ Aplikasi mobile berbasis Android yang memfasilitasi proses assessment klien. Sis
 
 ---
 
-## 6. Alur Sistem (Logic Workflow)
-1. **Registrasi Peserta:** Klien memasukkan data peserta -> Sistem generate token -> Email dikirim ke peserta.
-2. **Sesi Tes:** Peserta login dengan token -> Sistem membuka sesi -> Peserta menjawab soal -> Jawaban dikirim secara real-time ke Firestore.
-3. **Monitoring:** Klien membuka dashboard -> Snapshot listener di Firestore mendeteksi perubahan data dari peserta -> Dashboard terupdate otomatis.
+## 6. Alur Sistem End-to-End (Logic Workflow)
 
+Alur aplikasi ini dibagi menjadi dua siklus yang saling terhubung antara Klien (HR) dan Peserta:
+
+**Fase 1: Persiapan Klien Perusahaan (HRD)**
+1. Klien membuka aplikasi dan melakukan login (F01).
+2. Klien masuk ke Dashboard dan mendaftarkan kandidat peserta baru (F02).
+3. Sistem menghasilkan Token 6-digit dan Klien mendistribusikannya ke Peserta (F03).
+
+**Fase 2: Eksekusi Ujian (Peserta) & Monitoring (Klien)**
+4. Peserta membuka aplikasi, memilih menu "Login Peserta", dan memasukkan Token (F04).
+5. Peserta mulai mengerjakan soal satu per satu di dalam Sesi Tes (F05).
+6. Di saat yang sama, Klien dapat memantau indikator progres peserta yang sedang bergerak secara *real-time* di Dashboard (F06).
+
+**Fase 3: Penyelesaian (Klien)**
+7. Setelah Peserta menekan tombol "Selesai", sistem mengkalkulasi nilai.
+8. Klien membuka menu Laporan untuk melihat skor akhir dan mengunduh detail hasilnya (F07).
 ---
 
 ## 7. Rencana Pengembangan (Roadmap)
