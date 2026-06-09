@@ -24,7 +24,7 @@ Aplikasi mobile berbasis Android yang memfasilitasi proses assessment klien. Sis
 | F01 | Autentikasi | Sebagai pengguna, saya ingin login agar dapat mengakses dashboard sesuai peran saya. | P0 |
 | F02 | Manajemen Peserta | Sebagai Klien, saya ingin menginput data peserta agar mereka terdaftar di sistem. | P0 |
 | F03 | Distribusi Token | Sebagai Klien, saya ingin sistem mengirimkan token otomatis ke email peserta. | P1 |
-| F04 | Login Klien | Sebagai Peserta, saya ingin login ke portal test assesment emnggunakan token dari klien. | P0 |
+| F04 | Login Klien | Sebagai Peserta, saya ingin login ke portal test assesment menggunakan token generate dari klien. | P0 |
 | F05 | Sesi Tes | Sebagai Peserta, saya ingin menjawab soal agar proses assessment berjalan. | P0 |
 | F06 | Monitoring Real-time | Sebagai Klien, saya ingin melihat progres tes peserta secara langsung. | P1 |
 | F07 | Laporan Hasil | Sebagai Klien, saya ingin mengunduh laporan hasil tes peserta. | P2 |
