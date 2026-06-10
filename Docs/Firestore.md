@@ -1,6 +1,6 @@
 # Skema Firebase Firestore
 
-Dokumen ini menjelaskan struktur data dan skema koleksi database **Firebase Firestore** yang digunakan dalam proyek **Sistem Layanan Assessment Klien**. Karena Firestore adalah database NoSQL, data diorganisasikan ke dalam *Collections*, *Documents*, dan *Fields/Maps*.
+Dokumen ini menjelaskan struktur data dan skema koleksi database NoSQL **Firebase Firestore** yang digunakan dalam proyek **Sistem Layanan Assessment Klien**. Karena Firestore adalah database NoSQL, data diorganisasikan ke dalam *Collections*, *Documents*, dan *Fields/Maps*.
 
 ---
 
