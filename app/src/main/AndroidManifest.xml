@@ -31,6 +31,12 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.view.AddCandidateActivity"
+            android:exported="false"
+            android:label="@string/title_add_candidate"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
 
