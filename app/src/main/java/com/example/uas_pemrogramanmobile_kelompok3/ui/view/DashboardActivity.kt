@@ -52,5 +52,10 @@ class DashboardActivity : AppCompatActivity() {
             startActivity(Intent(this, PortalMasukActivity::class.java))
             finish()
         }
+
+        // Task 2.1 (Anisa): Open Add Candidate Form
+        binding.fabAddCandidate.setOnClickListener {
+            startActivity(Intent(this, AddCandidateActivity::class.java))
+        }
     }
 }
