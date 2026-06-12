@@ -18,6 +18,14 @@
     <string name="btn_login">Masuk</string>
     <string name="login_success">Login Berhasil</string>
 
+    <!-- Error Messages (Task 1.3 Max) -->
+    <string name="error_email_empty">Email tidak boleh kosong</string>
+    <string name="error_email_invalid">Format email tidak valid</string>
+    <string name="error_password_empty">Password tidak boleh kosong</string>
+    <string name="error_password_too_short">Password minimal 6 karakter</string>
+    <string name="error_login_failed">Email atau Password salah</string>
+    <string name="error_unknown">Terjadi kesalahan sistem</string>
+
     <!-- Dashboard Screen -->
     <string name="dashboard_title">Dashboard HR</string>
     <string name="welcome_admin">Selamat Datang, Admin</string>

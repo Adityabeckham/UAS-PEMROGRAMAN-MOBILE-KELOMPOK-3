@@ -14,33 +14,34 @@ class LoginViewModel(private val repository: AuthRepository = AuthRepository()) 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _emailError = MutableLiveData<String?>()
-    val emailError: LiveData<String?> = _emailError
+    // Task 1.3 (Max): Using null for no error, and specific keys for validation
+    private val _emailErrorKey = MutableLiveData<String?>()
+    val emailErrorKey: LiveData<String?> = _emailErrorKey
 
-    private val _passwordError = MutableLiveData<String?>()
-    val passwordError: LiveData<String?> = _passwordError
+    private val _passwordErrorKey = MutableLiveData<String?>()
+    val passwordErrorKey: LiveData<String?> = _passwordErrorKey
 
     fun login(email: String, password: String) {
         var isValid = true
 
         if (email.isBlank()) {
-            _emailError.value = "Email tidak boleh kosong"
+            _emailErrorKey.value = "EMPTY"
             isValid = false
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailError.value = "Format email tidak valid"
+            _emailErrorKey.value = "INVALID"
             isValid = false
         } else {
-            _emailError.value = null
+            _emailErrorKey.value = null
         }
 
         if (password.isBlank()) {
-            _passwordError.value = "Password tidak boleh kosong"
+            _passwordErrorKey.value = "EMPTY"
             isValid = false
         } else if (password.length < 6) {
-            _passwordError.value = "Password minimal 6 karakter"
+            _passwordErrorKey.value = "SHORT"
             isValid = false
         } else {
-            _passwordError.value = null
+            _passwordErrorKey.value = null
         }
 
         if (!isValid) return
