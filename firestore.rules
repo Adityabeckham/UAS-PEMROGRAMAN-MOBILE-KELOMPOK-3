@@ -5,10 +5,14 @@ service cloud.firestore {
 
     // Tugas 2.2: Aturan untuk koleksi peserta (participants)
     match /participants/{participantId} {
-      // Mengizinkan pengguna HR yang terautentikasi untuk membaca dan menulis data
-      // Pada aplikasi nyata, kita akan memeriksa kolom 'role' di dalam koleksi 'users'
-      // Untuk sprint ini, kita hanya memastikan apakah pengguna sudah login/terautentikasi
       allow read, write: if request.auth != null;
+    }
+
+    // Task 4.1 (Anisa): Rules for reports collection
+    match /reports/{reportId} {
+      allow read: if request.auth != null;
+      // Write will be handled by a system process or the exam completion logic (Aditya)
+      allow write: if request.auth != null;
     }
 
     // Aturan Default: Tolak semua akses ke koleksi lainnya

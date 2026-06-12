@@ -42,6 +42,11 @@
             android:label="@string/exam_title" />
 
         <activity
+            android:name=".ui.view.ReportsActivity"
+            android:exported="false"
+            android:label="@string/reports_title" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
 
