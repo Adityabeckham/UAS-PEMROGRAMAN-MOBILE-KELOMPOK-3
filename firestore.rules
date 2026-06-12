@@ -3,19 +3,19 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Tugas 2.2: Aturan untuk koleksi peserta (participants)
+    // Task 4.3 (Max): Bug Fix - Allow participants to access their data via token
+    // In this demo project, we allow public read/write for participants
+    // so they can verify tokens and save answers without Firebase Auth.
     match /participants/{participantId} {
+      allow read, write: if true;
+    }
+
+    // Reports are sensitive and only for HR Admin (Authenticated)
+    match /reports/{reportId} {
       allow read, write: if request.auth != null;
     }
 
-    // Task 4.1 (Anisa): Rules for reports collection
-    match /reports/{reportId} {
-      allow read: if request.auth != null;
-      // Write will be handled by a system process or the exam completion logic (Aditya)
-      allow write: if request.auth != null;
-    }
-
-    // Aturan Default: Tolak semua akses ke koleksi lainnya
+    // Default rule: deny everything else
     match /{document=**} {
       allow read, write: if false;
     }

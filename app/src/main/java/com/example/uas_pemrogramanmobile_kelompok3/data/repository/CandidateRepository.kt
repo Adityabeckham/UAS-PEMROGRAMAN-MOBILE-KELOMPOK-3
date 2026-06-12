@@ -13,7 +13,7 @@ class CandidateRepository(private val firestore: FirebaseFirestore = FirebaseFir
     private val candidateCollection = firestore.collection("participants")
     private val reportCollection = firestore.collection("reports")
 
-    // Kunci Jawaban Dummy (Task 4.2: Aditya)
+    // Kunci Jawaban Dummy
     private val answerKeys = mapOf(
         "1" to 0, // APK -> Android Package Kit
         "2" to 1, // Language -> Kotlin
@@ -31,6 +31,21 @@ class CandidateRepository(private val firestore: FirebaseFirestore = FirebaseFir
         }
     }
 
+    // Task 4.3 (Max): Function to verify token for participant login
+    suspend fun findCandidateByToken(token: String): Result<Candidate?> {
+        return try {
+            val snapshot = candidateCollection.whereEqualTo("token", token).get().await()
+            if (snapshot.isEmpty) {
+                Result.success(null)
+            } else {
+                val candidate = snapshot.documents[0].toObject(Candidate::class.java)
+                Result.success(candidate)
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
     suspend fun updateAnswers(candidateId: String, answers: Map<String, Int>, progress: Int): Result<Unit> {
         return try {
             candidateCollection.document(candidateId).update(
@@ -43,7 +58,6 @@ class CandidateRepository(private val firestore: FirebaseFirestore = FirebaseFir
         }
     }
 
-    // Task 4.2 (Aditya): Kalkulasi skor dan simpan laporan permanen
     suspend fun completeExam(candidateId: String): Result<Int> {
         return try {
             val snapshot = candidateCollection.document(candidateId).get().await()
@@ -61,7 +75,7 @@ class CandidateRepository(private val firestore: FirebaseFirestore = FirebaseFir
 
             // Simpan ke Laporan
             val report = Report(
-                id = candidateId, // Menggunakan ID yang sama agar mudah dilacak
+                id = candidateId,
                 candidateId = candidateId,
                 candidateName = candidate.name,
                 position = candidate.position,
@@ -70,7 +84,7 @@ class CandidateRepository(private val firestore: FirebaseFirestore = FirebaseFir
             
             reportCollection.document(report.id).set(report).await()
             
-            // Update status kandidat di participants
+            // Update status kandidat
             candidateCollection.document(candidateId).update(
                 "status", "Completed",
                 "progress", 100
