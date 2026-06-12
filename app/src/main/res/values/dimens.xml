@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="margin_mobile">16dp</dimen>
+    <dimen name="margin_desktop">48dp</dimen>
+    <dimen name="gutter">24dp</dimen>
+    <dimen name="rounded_md">12dp</dimen>
+    <dimen name="spacing_unit">8dp</dimen>
+</resources>
