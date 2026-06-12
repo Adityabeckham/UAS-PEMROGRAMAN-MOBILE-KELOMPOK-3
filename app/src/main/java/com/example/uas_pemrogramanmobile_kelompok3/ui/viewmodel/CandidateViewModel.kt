@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.uas_pemrogramanmobile_kelompok3.data.model.Candidate
+import com.example.uas_pemrogramanmobile_kelompok3.data.model.Report
 import com.example.uas_pemrogramanmobile_kelompok3.data.repository.CandidateRepository
 import kotlinx.coroutines.launch
 import java.util.UUID
@@ -20,6 +21,9 @@ class CandidateViewModel(private val repository: CandidateRepository = Candidate
 
     // Task 3.3 (Aditya): Real-time candidates for Dashboard
     val candidates: LiveData<List<Candidate>> = repository.getCandidatesRealTime().asLiveData()
+
+    // Task 4.1 (Anisa): Real-time reports for ReportsActivity
+    val reports: LiveData<List<Report>> = repository.getReportsRealTime().asLiveData()
 
     fun addCandidate(name: String, email: String, position: String) {
         viewModelScope.launch {
