@@ -47,6 +47,10 @@ class LoginActivity : AppCompatActivity() {
                 val password = binding.etPassword.text.toString().trim()
                 // Validasi UI: Button Login hanya aktif jika form tidak kosong
                 binding.btnLogin.isEnabled = email.isNotEmpty() && password.isNotEmpty()
+                
+                // Clear errors when typing
+                binding.tilEmail.error = null
+                binding.tilPassword.error = null
             }
             override fun afterTextChanged(s: Editable?) {}
         }
@@ -69,25 +73,36 @@ class LoginActivity : AppCompatActivity() {
             if (success) {
                 Toast.makeText(this, getString(R.string.login_success), Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, DashboardActivity::class.java))
-                finish()
+                finishAffinity() // Task 1.3 Max: Clear activity stack
             } else {
-                Toast.makeText(this, message ?: "Login Gagal", Toast.LENGTH_SHORT).show()
+                // Task 1.3 Max: Better error message handling
+                val errorMsg = if (message != null) getString(R.string.error_login_failed) else getString(R.string.error_unknown)
+                Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show()
             }
         }
 
         viewModel.isLoading.observe(this) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-            if (!isLoading) {
-                // Re-validate UI state after loading
-                val email = binding.etEmail.text.toString().trim()
-                val password = binding.etPassword.text.toString().trim()
-                binding.btnLogin.isEnabled = email.isNotEmpty() && password.isNotEmpty()
-            } else {
-                binding.btnLogin.isEnabled = false
-            }
+            binding.btnLogin.isEnabled = !isLoading
+            binding.etEmail.isEnabled = !isLoading
+            binding.etPassword.isEnabled = !isLoading
         }
         
-        viewModel.emailError.observe(this) { error -> binding.tilEmail.error = error }
-        viewModel.passwordError.observe(this) { error -> binding.tilPassword.error = error }
+        // Task 1.3 Max: Observe error keys and map to strings
+        viewModel.emailErrorKey.observe(this) { key ->
+            binding.tilEmail.error = when (key) {
+                "EMPTY" -> getString(R.string.error_email_empty)
+                "INVALID" -> getString(R.string.error_email_invalid)
+                else -> null
+            }
+        }
+
+        viewModel.passwordErrorKey.observe(this) { key ->
+            binding.tilPassword.error = when (key) {
+                "EMPTY" -> getString(R.string.error_password_empty)
+                "SHORT" -> getString(R.string.error_password_too_short)
+                else -> null
+            }
+        }
     }
 }
