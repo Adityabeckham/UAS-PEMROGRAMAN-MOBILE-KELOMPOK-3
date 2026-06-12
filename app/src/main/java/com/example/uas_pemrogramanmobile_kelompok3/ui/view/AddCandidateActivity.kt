@@ -4,21 +4,29 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
+import com.example.uas_pemrogramanmobile_kelompok3.R
 import com.example.uas_pemrogramanmobile_kelompok3.databinding.ActivityAddCandidateBinding
+import com.example.uas_pemrogramanmobile_kelompok3.ui.viewmodel.CandidateViewModel
 
 class AddCandidateActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddCandidateBinding
+    private lateinit var viewModel: CandidateViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddCandidateBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
+
+        viewModel = ViewModelProvider(this)[CandidateViewModel::class.java]
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -29,6 +37,7 @@ class AddCandidateActivity : AppCompatActivity() {
         setupToolbar()
         setupValidation()
         setupListeners()
+        observeViewModel()
     }
 
     private fun setupToolbar() {
@@ -69,9 +78,42 @@ class AddCandidateActivity : AppCompatActivity() {
         }
 
         binding.btnSave.setOnClickListener {
-            // Task 2.2 will handle saving to Firestore
-            // For now, we just close the activity to simulate success
-            finish()
+            val name = binding.etFullName.text.toString().trim()
+            val email = binding.etEmail.text.toString().trim()
+            val position = binding.etPosition.text.toString().trim()
+            viewModel.addCandidate(name, email, position)
         }
+    }
+
+    private fun observeViewModel() {
+        viewModel.isLoading.observe(this) { isLoading ->
+            binding.btnSave.isEnabled = !isLoading
+            binding.btnCancel.isEnabled = !isLoading
+            if (isLoading) {
+                binding.btnSave.text = getString(R.string.btn_saving)
+            } else {
+                binding.btnSave.text = getString(R.string.btn_save)
+            }
+        }
+
+        viewModel.addResult.observe(this) { result ->
+            result.onSuccess { token ->
+                showTokenDialog(token)
+            }.onFailure { exception ->
+                val errorMsg = exception.message ?: getString(R.string.error_unknown)
+                Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun showTokenDialog(token: String) {
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.dialog_success_title))
+            .setMessage(getString(R.string.dialog_success_message, token))
+            .setPositiveButton(getString(R.string.btn_done)) { _, _ ->
+                finish()
+            }
+            .setCancelable(false)
+            .show()
     }
 }

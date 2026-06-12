@@ -35,7 +35,7 @@
     <string name="live_candidates">Kandidat Live</string>
     <string name="desc_add_candidate">Tambah Kandidat</string>
 
-    <!-- Task 2.1: Form Input Peserta (Anisa) -->
+    <!-- Task 2.1 & 2.2: Form Input Peserta -->
     <string name="title_add_candidate">Tambah Kandidat Baru</string>
     <string name="subtitle_add_candidate">Lengkapi data untuk memberikan akses ujian</string>
     <string name="label_full_name">Nama Lengkap</string>
@@ -43,5 +43,11 @@
     <string name="label_position">Posisi / Jabatan</string>
     <string name="btn_save">Simpan</string>
     <string name="btn_cancel">Batal</string>
+    <string name="btn_saving">Menyimpan...</string>
     <string name="error_field_required">Field ini wajib diisi</string>
+
+    <!-- Token Dialog -->
+    <string name="dialog_success_title">Kandidat Berhasil Ditambah</string>
+    <string name="dialog_success_message">Berikan token ini kepada kandidat untuk mengakses ujian:\n\n%1$s</string>
+    <string name="btn_done">Selesai</string>
 </resources>
