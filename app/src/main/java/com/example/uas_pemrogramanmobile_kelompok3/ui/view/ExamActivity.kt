@@ -50,6 +50,7 @@ class ExamActivity : AppCompatActivity() {
         loadDummyQuestions()
         setupUI()
         setupListeners()
+        observeViewModel()
         displayQuestion()
         startTimer()
     }
@@ -90,6 +91,23 @@ class ExamActivity : AppCompatActivity() {
         }
     }
 
+    private fun observeViewModel() {
+        // Task 4.2 (Aditya): Observe exam completion result
+        viewModel.completeResult.observe(this) { result ->
+            result.onSuccess { score ->
+                isExamFinished = true
+                countDownTimer?.cancel()
+                showResultDialog(score)
+            }.onFailure { exception ->
+                Toast.makeText(this, "Gagal mengakhiri ujian: ${exception.message}", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        viewModel.isLoading.observe(this) { isLoading ->
+            // Show loading state if necessary
+        }
+    }
+
     private fun displayQuestion() {
         val question = questions[currentQuestionIndex]
         
@@ -123,7 +141,6 @@ class ExamActivity : AppCompatActivity() {
         }
     }
 
-    // Task 3.3 (Aditya): Save locally and Sync to Firestore
     private fun saveAndSyncAnswer() {
         val selectedId = binding.rgOptions.checkedRadioButtonId
         if (selectedId != -1) {
@@ -136,7 +153,6 @@ class ExamActivity : AppCompatActivity() {
             }
             answers[currentQuestionIndex] = selectedIndex
             
-            // Sync to Firestore
             candidateId?.let { id ->
                 val progress = ((currentQuestionIndex + 1).toFloat() / questions.size * 100).toInt()
                 val syncData = answers.mapKeys { questions[it.key].id }
@@ -165,15 +181,7 @@ class ExamActivity : AppCompatActivity() {
 
     private fun handleTimeUp() {
         saveAndSyncAnswer()
-        isExamFinished = true
-        AlertDialog.Builder(this)
-            .setTitle(getString(R.string.error_time_up_title))
-            .setMessage(getString(R.string.error_time_up_message))
-            .setPositiveButton(getString(R.string.btn_done)) { _, _ ->
-                finish()
-            }
-            .setCancelable(false)
-            .show()
+        candidateId?.let { viewModel.completeExam(it) }
     }
 
     override fun onPause() {
@@ -189,11 +197,20 @@ class ExamActivity : AppCompatActivity() {
             .setTitle(getString(R.string.confirm_finish_title))
             .setMessage(getString(R.string.confirm_finish_message))
             .setPositiveButton(getString(R.string.btn_yes)) { _, _ ->
-                isExamFinished = true
-                countDownTimer?.cancel()
-                finish()
+                candidateId?.let { viewModel.completeExam(it) }
             }
             .setNegativeButton(getString(R.string.btn_no), null)
+            .show()
+    }
+
+    private fun showResultDialog(score: Int) {
+        AlertDialog.Builder(this)
+            .setTitle("Ujian Selesai")
+            .setMessage("Terima kasih telah mengikuti ujian.\nSkor Anda: $score")
+            .setPositiveButton("Keluar") { _, _ ->
+                finish()
+            }
+            .setCancelable(false)
             .show()
     }
 
