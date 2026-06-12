@@ -21,47 +21,42 @@ class CandidateViewModel(private val repository: CandidateRepository = Candidate
 
     private val _completeResult = MutableLiveData<Result<Int>>()
     val completeResult: LiveData<Result<Int>> = _completeResult
+    
+    // Task 4.3 (Max): Result for participant token verification
+    private val _participantLoginResult = MutableLiveData<Result<Candidate?>>()
+    val participantLoginResult: LiveData<Result<Candidate?>> = _participantLoginResult
 
-    // Task 3.3 (Aditya): Real-time candidates for Dashboard
     val candidates: LiveData<List<Candidate>> = repository.getCandidatesRealTime().asLiveData()
-
-    // Task 4.1 (Anisa): Real-time reports for ReportsActivity
     val reports: LiveData<List<Report>> = repository.getReportsRealTime().asLiveData()
 
     fun addCandidate(name: String, email: String, position: String) {
         viewModelScope.launch {
             _isLoading.value = true
-            
             val token = repository.generateUniqueToken()
             val id = UUID.randomUUID().toString()
-            
-            val candidate = Candidate(
-                id = id,
-                name = name,
-                email = email,
-                position = position,
-                token = token,
-                status = "Active"
-            )
-
+            val candidate = Candidate(id = id, name = name, email = email, position = position, token = token, status = "Active")
             val result = repository.addCandidate(candidate)
-            if (result.isSuccess) {
-                _addResult.value = Result.success(token)
-            } else {
-                _addResult.value = Result.failure(result.exceptionOrNull() ?: Exception("Unknown error"))
-            }
+            _addResult.value = if (result.isSuccess) Result.success(token) else Result.failure(result.exceptionOrNull() ?: Exception("Unknown error"))
             _isLoading.value = false
         }
     }
 
-    // Task 3.3 (Aditya): Sync answers in real-time
+    // Task 4.3 (Max): Verify token logic
+    fun loginParticipant(token: String) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            val result = repository.findCandidateByToken(token)
+            _participantLoginResult.value = result
+            _isLoading.value = false
+        }
+    }
+
     fun syncAnswers(candidateId: String, answers: Map<String, Int>, progress: Int) {
         viewModelScope.launch {
             repository.updateAnswers(candidateId, answers, progress)
         }
     }
 
-    // Task 4.2 (Aditya): Complete exam and calculate score
     fun completeExam(candidateId: String) {
         viewModelScope.launch {
             _isLoading.value = true
