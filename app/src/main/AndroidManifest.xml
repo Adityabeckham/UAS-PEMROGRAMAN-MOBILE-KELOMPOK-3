@@ -37,6 +37,11 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
+            android:name=".ui.view.ExamActivity"
+            android:exported="false"
+            android:label="@string/exam_title" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
 

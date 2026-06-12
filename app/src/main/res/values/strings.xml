@@ -46,11 +46,28 @@
     <string name="btn_saving">Menyimpan…</string>
     <string name="error_field_required">Field ini wajib diisi</string>
 
-    <!-- Token Dialog & Sharing (Task 2.3 Max) -->
+    <!-- Token Dialog & Sharing -->
     <string name="dialog_success_title">Kandidat Berhasil Ditambah</string>
     <string name="dialog_success_message">Berikan token ini kepada kandidat untuk mengakses ujian:\n\n%1$s</string>
     <string name="btn_done">Selesai</string>
     <string name="label_token">Token: %1$s</string>
     <string name="share_token_text">Halo %1$s, berikut adalah token akses untuk ujian assessment Anda: %2$s\nSilakan gunakan token ini di aplikasi AssessPro.</string>
     <string name="share_title">Bagikan Token</string>
+
+    <!-- Task 3.1: UI Sesi Pengerjaan Soal (Anisa) -->
+    <string name="exam_title">Sesi Ujian</string>
+    <string name="question_indicator">Soal %1$d dari %2$d</string>
+    <string name="btn_next">Berikutnya</string>
+    <string name="btn_previous">Sebelumnya</string>
+    <string name="btn_finish">Selesai</string>
+    <string name="confirm_finish_title">Selesaikan Ujian?</string>
+    <string name="confirm_finish_message">Apakah Anda yakin ingin mengakhiri sesi ujian ini? Pastikan semua jawaban sudah terisi.</string>
+    <string name="btn_yes">Ya, Selesai</string>
+    <string name="btn_no">Belum</string>
+
+    <!-- Token Access (Sprint 2 related but needed for entry) -->
+    <string name="dialog_token_title">Masukkan Token Akses</string>
+    <string name="hint_token">6 Karakter Token</string>
+    <string name="btn_start_exam">Mulai Ujian</string>
+    <string name="error_invalid_token">Token tidak valid atau tidak ditemukan</string>
 </resources>
