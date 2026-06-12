@@ -34,9 +34,9 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         val dummyCandidates = listOf(
-            Candidate("1", "Aditya", "Android Developer", "Completed", 100),
-            Candidate("2", "Anisa", "UI Designer", "Active", 65),
-            Candidate("3", "Max", "QA Engineer", "Active", 20)
+            Candidate(id = "1", name = "Aditya", email = "aditya@example.com", position = "Android Developer", status = "Completed", progress = 100),
+            Candidate(id = "2", name = "Anisa", email = "anisa@example.com", position = "UI Designer", status = "Active", progress = 65),
+            Candidate(id = "3", name = "Max", email = "max@example.com", position = "QA Engineer", status = "Active", progress = 20)
         )
 
         binding.rvCandidates.apply {
