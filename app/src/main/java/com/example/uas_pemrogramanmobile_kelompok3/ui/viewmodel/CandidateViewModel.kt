@@ -19,6 +19,9 @@ class CandidateViewModel(private val repository: CandidateRepository = Candidate
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val _completeResult = MutableLiveData<Result<Int>>()
+    val completeResult: LiveData<Result<Int>> = _completeResult
+
     // Task 3.3 (Aditya): Real-time candidates for Dashboard
     val candidates: LiveData<List<Candidate>> = repository.getCandidatesRealTime().asLiveData()
 
@@ -55,6 +58,16 @@ class CandidateViewModel(private val repository: CandidateRepository = Candidate
     fun syncAnswers(candidateId: String, answers: Map<String, Int>, progress: Int) {
         viewModelScope.launch {
             repository.updateAnswers(candidateId, answers, progress)
+        }
+    }
+
+    // Task 4.2 (Aditya): Complete exam and calculate score
+    fun completeExam(candidateId: String) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            val result = repository.completeExam(candidateId)
+            _completeResult.value = result
+            _isLoading.value = false
         }
     }
 }

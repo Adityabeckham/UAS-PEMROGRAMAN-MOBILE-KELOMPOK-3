@@ -13,6 +13,15 @@ class CandidateRepository(private val firestore: FirebaseFirestore = FirebaseFir
     private val candidateCollection = firestore.collection("participants")
     private val reportCollection = firestore.collection("reports")
 
+    // Kunci Jawaban Dummy (Task 4.2: Aditya)
+    private val answerKeys = mapOf(
+        "1" to 0, // APK -> Android Package Kit
+        "2" to 1, // Language -> Kotlin
+        "3" to 2, // UI Component -> Activity
+        "4" to 0, // Manifest -> AndroidManifest.xml
+        "5" to 1  // Layout -> LinearLayout
+    )
+
     suspend fun addCandidate(candidate: Candidate): Result<Unit> {
         return try {
             candidateCollection.document(candidate.id).set(candidate).await()
@@ -34,6 +43,45 @@ class CandidateRepository(private val firestore: FirebaseFirestore = FirebaseFir
         }
     }
 
+    // Task 4.2 (Aditya): Kalkulasi skor dan simpan laporan permanen
+    suspend fun completeExam(candidateId: String): Result<Int> {
+        return try {
+            val snapshot = candidateCollection.document(candidateId).get().await()
+            val candidate = snapshot.toObject(Candidate::class.java) ?: throw Exception("Candidate not found")
+
+            // Kalkulasi Skor
+            var correctCount = 0
+            candidate.answers.forEach { (qId, selectedIdx) ->
+                if (answerKeys[qId] == selectedIdx) {
+                    correctCount++
+                }
+            }
+            
+            val finalScore = (correctCount.toFloat() / answerKeys.size * 100).toInt()
+
+            // Simpan ke Laporan
+            val report = Report(
+                id = candidateId, // Menggunakan ID yang sama agar mudah dilacak
+                candidateId = candidateId,
+                candidateName = candidate.name,
+                position = candidate.position,
+                finalScore = finalScore
+            )
+            
+            reportCollection.document(report.id).set(report).await()
+            
+            // Update status kandidat di participants
+            candidateCollection.document(candidateId).update(
+                "status", "Completed",
+                "progress", 100
+            ).await()
+
+            Result.success(finalScore)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
     fun getCandidatesRealTime(): Flow<List<Candidate>> = callbackFlow {
         val subscription = candidateCollection.addSnapshotListener { snapshot, error ->
             if (error != null) {
@@ -48,7 +96,6 @@ class CandidateRepository(private val firestore: FirebaseFirestore = FirebaseFir
         awaitClose { subscription.remove() }
     }
 
-    // Task 4.1 (Anisa): Get reports in real-time
     fun getReportsRealTime(): Flow<List<Report>> = callbackFlow {
         val subscription = reportCollection.orderBy("completedAt", com.google.firebase.firestore.Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, error ->
