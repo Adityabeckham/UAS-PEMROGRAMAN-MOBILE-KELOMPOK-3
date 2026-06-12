@@ -1,5 +1,6 @@
 package com.example.uas_pemrogramanmobile_kelompok3.ui.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -98,7 +99,8 @@ class AddCandidateActivity : AppCompatActivity() {
 
         viewModel.addResult.observe(this) { result ->
             result.onSuccess { token ->
-                showTokenDialog(token)
+                val name = binding.etFullName.text.toString().trim()
+                showTokenDialog(name, token)
             }.onFailure { exception ->
                 val errorMsg = exception.message ?: getString(R.string.error_unknown)
                 Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show()
@@ -106,14 +108,27 @@ class AddCandidateActivity : AppCompatActivity() {
         }
     }
 
-    private fun showTokenDialog(token: String) {
+    private fun showTokenDialog(name: String, token: String) {
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.dialog_success_title))
             .setMessage(getString(R.string.dialog_success_message, token))
             .setPositiveButton(getString(R.string.btn_done)) { _, _ ->
                 finish()
             }
+            .setNeutralButton(getString(R.string.share_title)) { _, _ ->
+                shareToken(name, token)
+                finish()
+            }
             .setCancelable(false)
             .show()
+    }
+
+    private fun shareToken(name: String, token: String) {
+        val shareText = getString(R.string.share_token_text, name, token)
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT, shareText)
+        }
+        startActivity(Intent.createChooser(intent, getString(R.string.share_title)))
     }
 }
