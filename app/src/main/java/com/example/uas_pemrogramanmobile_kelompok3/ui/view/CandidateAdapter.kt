@@ -1,5 +1,6 @@
 package com.example.uas_pemrogramanmobile_kelompok3.ui.view
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -19,9 +20,24 @@ class CandidateAdapter(private val candidates: List<Candidate>) :
 
     override fun onBindViewHolder(holder: CandidateViewHolder, position: Int) {
         val candidate = candidates[position]
+        val context = holder.itemView.context
+        
         holder.binding.apply {
             tvCandidateName.text = candidate.name
             tvPosition.text = candidate.position
+            
+            // Task 2.3 (Max): Display Token and Share Functionality
+            tvTokenLabel.text = context.getString(R.string.label_token, candidate.token)
+            
+            btnShareToken.setOnClickListener {
+                val shareText = context.getString(R.string.share_token_text, candidate.name, candidate.token)
+                val intent = Intent(Intent.ACTION_SEND).apply {
+                    type = "text/plain"
+                    putExtra(Intent.EXTRA_TEXT, shareText)
+                }
+                context.startActivity(Intent.createChooser(intent, context.getString(R.string.share_title)))
+            }
+
             chipStatus.text = candidate.status
             progressIndicator.progress = candidate.progress
             
