@@ -9,22 +9,27 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.uas_pemrogramanmobile_kelompok3.R
 import com.example.uas_pemrogramanmobile_kelompok3.data.model.Question
 import com.example.uas_pemrogramanmobile_kelompok3.databinding.ActivityExamBinding
+import com.example.uas_pemrogramanmobile_kelompok3.ui.viewmodel.CandidateViewModel
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 class ExamActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityExamBinding
+    private lateinit var viewModel: CandidateViewModel
+    
+    private var candidateId: String? = null
     private var currentQuestionIndex = 0
     private val questions = mutableListOf<Question>()
     private val answers = mutableMapOf<Int, Int>() // Question Index -> Selected Option Index
     
-    // Task 3.2 (Max): Timer & Anti-Cheat
+    // Task 3.2: Timer & Anti-Cheat
     private var countDownTimer: CountDownTimer? = null
-    private val examDurationMillis: Long = 15 * 60 * 1000L // 15 Menit
+    private val examDurationMillis: Long = 15 * 60 * 1000L
     private var isExamFinished = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +37,9 @@ class ExamActivity : AppCompatActivity() {
         binding = ActivityExamBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
+
+        viewModel = ViewModelProvider(this)[CandidateViewModel::class.java]
+        candidateId = intent.getStringExtra("CANDIDATE_ID")
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -62,7 +70,7 @@ class ExamActivity : AppCompatActivity() {
 
     private fun setupListeners() {
         binding.btnNext.setOnClickListener {
-            saveCurrentAnswer()
+            saveAndSyncAnswer()
             if (currentQuestionIndex < questions.size - 1) {
                 currentQuestionIndex++
                 displayQuestion()
@@ -70,7 +78,7 @@ class ExamActivity : AppCompatActivity() {
         }
 
         binding.btnPrevious.setOnClickListener {
-            saveCurrentAnswer()
+            saveAndSyncAnswer()
             if (currentQuestionIndex > 0) {
                 currentQuestionIndex--
                 displayQuestion()
@@ -115,7 +123,8 @@ class ExamActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveCurrentAnswer() {
+    // Task 3.3 (Aditya): Save locally and Sync to Firestore
+    private fun saveAndSyncAnswer() {
         val selectedId = binding.rgOptions.checkedRadioButtonId
         if (selectedId != -1) {
             val selectedIndex = when (selectedId) {
@@ -126,10 +135,16 @@ class ExamActivity : AppCompatActivity() {
                 else -> -1
             }
             answers[currentQuestionIndex] = selectedIndex
+            
+            // Sync to Firestore
+            candidateId?.let { id ->
+                val progress = ((currentQuestionIndex + 1).toFloat() / questions.size * 100).toInt()
+                val syncData = answers.mapKeys { questions[it.key].id }
+                viewModel.syncAnswers(id, syncData, progress)
+            }
         }
     }
 
-    // Task 3.2 (Max): Timer Implementation
     private fun startTimer() {
         countDownTimer = object : CountDownTimer(examDurationMillis, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -137,7 +152,6 @@ class ExamActivity : AppCompatActivity() {
                 val seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60
                 binding.tvTimer.text = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
                 
-                // Alert if time is running out (less than 1 minute)
                 if (millisUntilFinished < 60000) {
                     binding.tvTimer.setTextColor(getColor(R.color.error))
                 }
@@ -150,7 +164,7 @@ class ExamActivity : AppCompatActivity() {
     }
 
     private fun handleTimeUp() {
-        saveCurrentAnswer()
+        saveAndSyncAnswer()
         isExamFinished = true
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.error_time_up_title))
@@ -162,7 +176,6 @@ class ExamActivity : AppCompatActivity() {
             .show()
     }
 
-    // Task 3.2 (Max): Basic Anti-Cheat
     override fun onPause() {
         super.onPause()
         if (!isExamFinished) {
@@ -171,7 +184,7 @@ class ExamActivity : AppCompatActivity() {
     }
 
     private fun showFinishConfirmation() {
-        saveCurrentAnswer()
+        saveAndSyncAnswer()
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.confirm_finish_title))
             .setMessage(getString(R.string.confirm_finish_message))

@@ -8,5 +8,6 @@ data class Candidate(
     val token: String = "",
     val status: String = "Active", // Active, Completed, Pending
     val progress: Int = 0,
+    val answers: Map<String, Int> = emptyMap(), // Key: QuestionId, Value: SelectedOptionIndex
     val createdAt: Long = System.currentTimeMillis()
 )
