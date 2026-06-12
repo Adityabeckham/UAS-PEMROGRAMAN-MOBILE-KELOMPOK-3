@@ -1,3 +1,29 @@
 <resources>
-    <string name="app_name">UAS-PEMROGRAMAN MOBILE-KELOMPOK 3</string>
+    <string name="app_name">AssessPro</string>
+
+    <!-- Portal Masuk -->
+    <string name="portal_title">Portal Masuk</string>
+    <string name="role_hr">Klien (HR Admin)</string>
+    <string name="role_hr_desc">Kelola peserta dan pantau hasil ujian</string>
+    <string name="role_participant">Peserta Ujian</string>
+    <string name="role_participant_desc">Masuk menggunakan token akses</string>
+
+    <!-- Login Screen -->
+    <string name="login_title">Masuk Admin</string>
+    <string name="login_subtitle">Selamat datang kembali di sistem assessment</string>
+    <string name="label_email">Email</string>
+    <string name="label_password">Password</string>
+    <string name="hint_email">Masukkan email Anda</string>
+    <string name="hint_password">Masukkan password Anda</string>
+    <string name="btn_login">Masuk</string>
+    <string name="login_success">Login Berhasil</string>
+
+    <!-- Dashboard Screen -->
+    <string name="dashboard_title">Dashboard HR</string>
+    <string name="welcome_admin">Selamat Datang, Admin</string>
+    <string name="btn_logout">Keluar</string>
+    <string name="stats_registered">Terdaftar</string>
+    <string name="stats_active">Aktif</string>
+    <string name="live_candidates">Kandidat Live</string>
+    <string name="desc_add_candidate">Tambah Kandidat</string>
 </resources>
