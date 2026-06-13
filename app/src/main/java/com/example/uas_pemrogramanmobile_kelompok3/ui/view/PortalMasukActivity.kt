@@ -2,10 +2,11 @@ package com.example.uas_pemrogramanmobile_kelompok3.ui.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.EditText
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -41,8 +42,26 @@ class PortalMasukActivity : AppCompatActivity() {
             insets
         }
 
+        setupValidation()
         setupListeners()
         observeViewModel()
+    }
+
+    private fun setupValidation() {
+        // Disable submit button by default
+        binding.btnSubmitToken.isEnabled = false
+
+        binding.etToken.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val token = s.toString().trim()
+                // Enable button only when token is exactly 6 characters
+                binding.btnSubmitToken.isEnabled = token.length == 6
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
     }
 
     private fun setupListeners() {
@@ -51,7 +70,28 @@ class PortalMasukActivity : AppCompatActivity() {
         }
 
         binding.cardParticipant.setOnClickListener {
-            showTokenLoginDialog()
+            // Smooth transition to token layout
+            binding.choiceLayout.visibility = View.GONE
+            binding.paneCandidateLayout.visibility = View.VISIBLE
+            binding.etToken.text?.clear()
+            binding.etToken.requestFocus()
+        }
+
+        binding.btnBackToken.setOnClickListener {
+            // Return to choice layout
+            binding.paneCandidateLayout.visibility = View.GONE
+            binding.choiceLayout.visibility = View.VISIBLE
+        }
+
+        binding.btnSubmitToken.setOnClickListener {
+            val token = binding.etToken.text.toString().trim().uppercase()
+            if (token.isNotEmpty()) {
+                viewModel.loginParticipant(token)
+            }
+        }
+        
+        binding.tvForgotToken.setOnClickListener {
+            Toast.makeText(this, "Silakan hubungi admin ujian kelompok 3 untuk mendapatkan token Anda.", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -74,24 +114,6 @@ class PortalMasukActivity : AppCompatActivity() {
                 Toast.makeText(this, "Error: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
         }
-    }
-
-    private fun showTokenLoginDialog() {
-        val input = EditText(this)
-        input.hint = getString(R.string.hint_token)
-        input.setPadding(48, 32, 48, 32)
-
-        AlertDialog.Builder(this)
-            .setTitle(getString(R.string.dialog_token_title))
-            .setView(input)
-            .setPositiveButton(getString(R.string.btn_start_exam)) { _, _ ->
-                val token = input.text.toString().trim().uppercase()
-                if (token.isNotEmpty()) {
-                    viewModel.loginParticipant(token)
-                }
-            }
-            .setNegativeButton(getString(R.string.btn_cancel), null)
-            .show()
     }
 
     private fun navigateToDashboard() {

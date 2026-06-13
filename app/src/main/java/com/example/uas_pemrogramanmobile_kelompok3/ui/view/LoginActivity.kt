@@ -65,6 +65,10 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.etPassword.text.toString().trim()
             viewModel.login(email, password)
         }
+
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun observeViewModel() {
@@ -73,9 +77,8 @@ class LoginActivity : AppCompatActivity() {
             if (success) {
                 Toast.makeText(this, getString(R.string.login_success), Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, DashboardActivity::class.java))
-                finishAffinity() // Task 1.3 Max: Clear activity stack
+                finishAffinity() // Clear activity stack
             } else {
-                // Task 1.3 Max: Better error message handling
                 val errorMsg = if (message != null) getString(R.string.error_login_failed) else getString(R.string.error_unknown)
                 Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show()
             }
@@ -88,7 +91,6 @@ class LoginActivity : AppCompatActivity() {
             binding.etPassword.isEnabled = !isLoading
         }
         
-        // Task 1.3 Max: Observe error keys and map to strings
         viewModel.emailErrorKey.observe(this) { key ->
             binding.tilEmail.error = when (key) {
                 "EMPTY" -> getString(R.string.error_email_empty)

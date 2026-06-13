@@ -83,4 +83,30 @@
     <string name="reports_title">Laporan Hasil Ujian</string>
     <string name="label_final_score">Skor Akhir: %1$d</string>
     <string name="empty_reports">Belum ada laporan ujian yang tersedia.</string>
+
+    <!-- Stitch UI Additional Strings -->
+    <string name="welcome_test_title">Selamat Datang di Tes Anda</string>
+    <string name="select_access_path">Silakan pilih jalur akses Anda.</string>
+    <string name="login_admin_hr_title">Login Administrator HR</string>
+    <string name="input_token_title">Masukkan 6-Digit Token</string>
+    <string name="input_token_subtitle">Silakan masukkan kode undangan 6-digit yang dikirim ke email Anda.</string>
+    <string name="btn_start_test">Mulai Tes</string>
+    <string name="forgot_token_text">Lupa token Anda? Hubungi Dukungan</string>
+    <string name="copyright_notice">© 2026 Assessment Systems. Seluruh hak cipta dilindungi undang-undang.</string>
+    <string name="created_by_team">Dibuat oleh Kelompok 3</string>
+    <string name="privacy_policy">Kebijakan Privasi</string>
+    <string name="terms_of_service">Ketentuan Layanan</string>
+    <string name="label_email_small">Email</string>
+    <string name="label_password_small">Kata Sandi</string>
+    <string name="btn_login_dashboard">Masuk ke Dashboard</string>
+    <string name="stats_active_desc">Pemantauan waktu nyata aktif</string>
+    <string name="stats_completed">Selesai Hari Ini</string>
+    <string name="stats_completed_desc">Skor rata-rata: 76%</string>
+    <string name="dashboard_welcome_subtitle">Selamat datang kembali, Administrator</string>
+    <string name="live_candidate_progress">Progres Kandidat Langsung</string>
+    <string name="live_candidate_progress_desc">Menampilkan sesi tes aktif di semua departemen</string>
+    <string name="nav_home">Beranda</string>
+    <string name="nav_test">Tes</string>
+    <string name="nav_people">Orang</string>
+    <string name="nav_results">Hasil</string>
 </resources>
