@@ -2,14 +2,9 @@ package com.example.uas_pemrogramanmobile_kelompok3.ui.view
 
 import android.content.Intent
 import android.os.Bundle
-<<<<<<< HEAD
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-=======
-import android.view.View
-import android.widget.EditText
->>>>>>> acfcfb5c63000e46d4b89645f9d09156315b1a43
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -53,7 +48,6 @@ class PortalMasukActivity : AppCompatActivity() {
     }
 
     private fun setupValidation() {
-        // Disable submit button by default
         binding.btnSubmitToken.isEnabled = false
 
         binding.etToken.addTextChangedListener(object : TextWatcher {
@@ -61,7 +55,6 @@ class PortalMasukActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val token = s.toString().trim()
-                // Enable button only when token is exactly 6 characters
                 binding.btnSubmitToken.isEnabled = token.length == 6
             }
 
@@ -75,7 +68,6 @@ class PortalMasukActivity : AppCompatActivity() {
         }
 
         binding.cardParticipant.setOnClickListener {
-            // Smooth transition to token layout
             binding.choiceLayout.visibility = View.GONE
             binding.paneCandidateLayout.visibility = View.VISIBLE
             binding.etToken.text?.clear()
@@ -83,7 +75,6 @@ class PortalMasukActivity : AppCompatActivity() {
         }
 
         binding.btnBackToken.setOnClickListener {
-            // Return to choice layout
             binding.paneCandidateLayout.visibility = View.GONE
             binding.choiceLayout.visibility = View.VISIBLE
         }
@@ -113,11 +104,9 @@ class PortalMasukActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                 } else {
-                    // Berarti query sukses tapi token tidak ditemukan di database
                     Toast.makeText(this, getString(R.string.error_invalid_token), Toast.LENGTH_SHORT).show()
                 }
             }.onFailure { exception ->
-                // Ini biasanya karena masalah koneksi atau Firestore Rules belum di-update
                 Toast.makeText(this, "Gagal terhubung ke server: ${exception.message}", Toast.LENGTH_LONG).show()
             }
         }
@@ -127,27 +116,6 @@ class PortalMasukActivity : AppCompatActivity() {
         }
     }
 
-<<<<<<< HEAD
-=======
-    private fun showTokenLoginDialog() {
-        val input = EditText(this)
-        input.hint = getString(R.string.hint_token)
-        input.setPadding(64, 48, 64, 48)
-
-        AlertDialog.Builder(this)
-            .setTitle(getString(R.string.dialog_token_title))
-            .setView(input)
-            .setPositiveButton(getString(R.string.btn_start_exam)) { _, _ ->
-                val token = input.text.toString().trim().uppercase()
-                if (token.isNotEmpty()) {
-                    viewModel.loginParticipant(token)
-                }
-            }
-            .setNegativeButton(getString(R.string.btn_cancel), null)
-            .show()
-    }
-
->>>>>>> acfcfb5c63000e46d4b89645f9d09156315b1a43
     private fun navigateToDashboard() {
         startActivity(Intent(this, DashboardActivity::class.java))
         finish()
