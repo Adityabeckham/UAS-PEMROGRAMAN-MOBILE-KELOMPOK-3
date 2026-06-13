@@ -2,6 +2,7 @@ package com.example.uas_pemrogramanmobile_kelompok3.ui.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -60,7 +61,7 @@ class PortalMasukActivity : AppCompatActivity() {
             result.onSuccess { candidate ->
                 if (candidate != null) {
                     if (candidate.status == "Completed") {
-                        Toast.makeText(this, "Anda sudah menyelesaikan ujian ini.", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Ujian sudah selesai untuk token ini.", Toast.LENGTH_LONG).show()
                     } else {
                         val intent = Intent(this, ExamActivity::class.java).apply {
                             putExtra("CANDIDATE_ID", candidate.id)
@@ -68,18 +69,24 @@ class PortalMasukActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                 } else {
+                    // Berarti query sukses tapi token tidak ditemukan di database
                     Toast.makeText(this, getString(R.string.error_invalid_token), Toast.LENGTH_SHORT).show()
                 }
             }.onFailure { exception ->
-                Toast.makeText(this, "Error: ${exception.message}", Toast.LENGTH_SHORT).show()
+                // Ini biasanya karena masalah koneksi atau Firestore Rules belum di-update
+                Toast.makeText(this, "Gagal terhubung ke server: ${exception.message}", Toast.LENGTH_LONG).show()
             }
+        }
+        
+        viewModel.isLoading.observe(this) { isLoading ->
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
     }
 
     private fun showTokenLoginDialog() {
         val input = EditText(this)
         input.hint = getString(R.string.hint_token)
-        input.setPadding(48, 32, 48, 32)
+        input.setPadding(64, 48, 64, 48)
 
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.dialog_token_title))
