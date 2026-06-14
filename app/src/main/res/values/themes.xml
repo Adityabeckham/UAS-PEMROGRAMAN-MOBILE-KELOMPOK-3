@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.UASPEMROGRAMANMOBILEKELOMPOK3" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.UASPEMROGRAMANMOBILEKELOMPOK3" parent="Theme.Material3.Light.NoActionBar">
         <!-- Primary brand colors -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorOnPrimary">@color/on_primary</item>
@@ -21,7 +21,11 @@
         <item name="colorOnSurfaceVariant">@color/on_surface_variant</item>
 
         <item name="colorOutline">@color/outline</item>
+        <item name="colorOutlineVariant">@color/outline_variant</item>
         <item name="colorError">@color/error</item>
+
+        <!-- Typography -->
+        <item name="android:fontFamily">sans-serif</item>
 
         <!-- Component Styles -->
         <item name="materialButtonStyle">@style/Widget.AssessPro.Button</item>
@@ -30,23 +34,37 @@
 
     <style name="Theme.UASPEMROGRAMANMOBILEKELOMPOK3" parent="Base.Theme.UASPEMROGRAMANMOBILEKELOMPOK3" />
 
-    <!-- Button Style: 12dp rounded, 16sp bold text -->
+    <!-- Button Style: Floating Gradient/Solid look, 16dp rounded, 16sp bold text -->
     <style name="Widget.AssessPro.Button" parent="Widget.Material3.Button">
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
-        <item name="shapeAppearance">@style/ShapeAppearance.AssessPro.Medium</item>
-        <item name="android:paddingTop">12dp</item>
-        <item name="android:paddingBottom">12dp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.AssessPro.Large</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textAllCaps">false</item>
+        <item name="android:elevation">8dp</item>
+        <item name="backgroundTint">@color/primary_container</item>
     </style>
 
-    <!-- TextInputLayout Style: 12dp rounded, 1dp border -->
+    <!-- Tonal Button (For Logout/Secondary actions) -->
+    <style name="Widget.AssessPro.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
+        <item name="shapeAppearance">@style/ShapeAppearance.AssessPro.Large</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="backgroundTint">@color/surface_variant</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <!-- TextInputLayout Style: Soft Outlined, rounded corners -->
     <style name="Widget.AssessPro.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
         <item name="shapeAppearance">@style/ShapeAppearance.AssessPro.Medium</item>
-        <item name="boxStrokeColor">@color/primary</item>
-        <item name="hintTextColor">@color/primary</item>
+        <item name="boxStrokeColor">@color/primary_container</item>
+        <item name="hintTextColor">@color/primary_container</item>
         <item name="errorTextColor">@color/error</item>
+        <item name="boxBackgroundColor">@color/surface</item>
+        <item name="boxStrokeWidth">1.5dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
     </style>
 
     <!-- Shape Styles -->
