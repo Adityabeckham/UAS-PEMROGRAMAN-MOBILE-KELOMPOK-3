@@ -7,13 +7,13 @@
     android:background="@color/background"
     tools:context=".ui.view.DashboardActivity">
 
-    <!-- Custom Top App Bar -->
+    <!-- Custom Top App Bar (Clean White, Floating effect below it) -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/appBarCard"
         android:layout_width="0dp"
-        android:layout_height="72dp"
+        android:layout_height="76dp"
         app:cardCornerRadius="0dp"
-        app:cardElevation="2dp"
+        app:cardElevation="4dp"
         app:cardBackgroundColor="@color/white"
         app:strokeWidth="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingHorizontal="16dp">
+            android:paddingHorizontal="20dp">
 
             <ImageView
                 android:layout_width="40dp"
@@ -37,40 +37,50 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="16dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/app_name"
-                    android:textColor="@color/primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/text_primary"
+                    android:textSize="15sp"
+                    android:fontFamily="sans-serif-medium" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dashboard_welcome_subtitle"
-                    android:textColor="@color/secondary"
-                    android:textSize="11sp" />
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <ImageButton
                 android:id="@+id/btnNotification"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Notifikasi"
-                app:srcCompat="@drawable/ic_notification" />
+                app:srcCompat="@drawable/ic_notification"
+                app:tint="@color/text_primary" />
 
-            <!-- Profile indicator -->
-            <View
-                android:layout_width="12dp"
-                android:layout_height="12dp"
+            <!-- Profile indicator (Circle with image or icon) -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_marginStart="8dp"
-                android:background="@drawable/ic_person_admin"
-                android:backgroundTint="@color/primary" />
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp"
+                app:cardBackgroundColor="@color/surface_variant">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="6dp"
+                    app:tint="@color/navy_dark"
+                    app:srcCompat="@drawable/ic_person_admin" />
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -87,50 +97,64 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingHorizontal="20dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="80dp">
 
             <!-- Stats Section (3 cards stacked vertically) -->
             <!-- Card 1: Registered Candidates -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="0dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
                 app:cardBackgroundColor="@color/white"
-                app:strokeColor="@color/outline_variant"
-                app:strokeWidth="1dp">
+                app:strokeWidth="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Kandidat Terdaftar"
-                        android:textColor="@color/secondary"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp"
+                        android:fontFamily="sans-serif-medium" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="1.482"
-                        android:textColor="@color/on_surface"
-                        android:textSize="28sp"
-                        android:textStyle="bold" />
+                        android:orientation="horizontal"
+                        android:gravity="bottom"
+                        android:layout_marginTop="4dp">
+                        
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1.482"
+                            android:textColor="@color/text_primary"
+                            android:textSize="32sp"
+                            android:fontFamily="sans-serif-medium" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="↗ +12% minggu ini"
-                        android:textColor="@color/primary_container"
-                        android:textSize="12sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginBottom="6dp"
+                            android:background="@drawable/bg_button_gradient"
+                            android:backgroundTint="#E6F2FF"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="4dp"
+                            android:text="↗ +12% minggu ini"
+                            android:textColor="@color/primary"
+                            android:textSize="12sp"
+                            android:fontFamily="sans-serif-medium" />
+                    </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -138,43 +162,55 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="0dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
                 app:cardBackgroundColor="@color/white"
-                app:strokeColor="@color/outline_variant"
-                app:strokeWidth="1dp">
+                app:strokeWidth="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sesi Aktif"
-                        android:textColor="@color/secondary"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp"
+                        android:fontFamily="sans-serif-medium" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="42"
-                        android:textColor="@color/on_surface"
-                        android:textSize="28sp"
-                        android:textStyle="bold" />
+                        android:orientation="horizontal"
+                        android:gravity="bottom"
+                        android:layout_marginTop="4dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/stats_active_desc"
-                        android:textColor="@color/warning"
-                        android:textSize="12sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="42"
+                            android:textColor="@color/text_primary"
+                            android:textSize="32sp"
+                            android:fontFamily="sans-serif-medium" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginBottom="6dp"
+                            android:background="@drawable/bg_button_gradient"
+                            android:backgroundTint="#FFF8E1"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="4dp"
+                            android:text="@string/stats_active_desc"
+                            android:textColor="#F57F17"
+                            android:textSize="12sp"
+                            android:fontFamily="sans-serif-medium" />
+                    </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -182,43 +218,55 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="0dp"
+                android:layout_marginBottom="32dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
                 app:cardBackgroundColor="@color/white"
-                app:strokeColor="@color/outline_variant"
-                app:strokeWidth="1dp">
+                app:strokeWidth="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/stats_completed"
-                        android:textColor="@color/secondary"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp"
+                        android:fontFamily="sans-serif-medium" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="128"
-                        android:textColor="@color/on_surface"
-                        android:textSize="28sp"
-                        android:textStyle="bold" />
+                        android:orientation="horizontal"
+                        android:gravity="bottom"
+                        android:layout_marginTop="4dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="✓ Skor rata-rata: 76%"
-                        android:textColor="@color/success"
-                        android:textSize="12sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="128"
+                            android:textColor="@color/text_primary"
+                            android:textSize="32sp"
+                            android:fontFamily="sans-serif-medium" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginBottom="6dp"
+                            android:background="@drawable/bg_button_gradient"
+                            android:backgroundTint="#E8F5E9"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="4dp"
+                            android:text="✓ Skor rata-rata: 76%"
+                            android:textColor="#2E7D32"
+                            android:textSize="12sp"
+                            android:fontFamily="sans-serif-medium" />
+                    </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -227,45 +275,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/live_candidate_progress"
-                android:textColor="@color/on_background"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textColor="@color/text_primary"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-medium" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="@string/live_candidate_progress_desc"
-                android:textColor="@color/secondary"
-                android:textSize="13sp" />
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
 
             <!-- Table Header -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:orientation="horizontal"
-                android:paddingHorizontal="8dp">
+                android:paddingHorizontal="4dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
-                    android:text="Kandidat"
-                    android:textColor="@color/secondary"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:text="KANDIDAT"
+                    android:textColor="@color/text_hint"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.05" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="Progres Tes"
-                    android:textColor="@color/secondary"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:text="PROGRES TES"
+                    android:textColor="@color/text_hint"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.05" />
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/outline" />
 
             <!-- Candidate List -->
             <androidx.recyclerview.widget.RecyclerView
@@ -278,13 +334,12 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogout"
-                style="@style/Widget.Material3.Button.TonalButton"
+                style="@style/Widget.AssessPro.Button.Tonal"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
-                android:text="@string/btn_logout"
-                app:cornerRadius="12dp" />
+                android:text="@string/btn_logout" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
@@ -293,21 +348,22 @@
         android:id="@+id/fabAddCandidate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="20dp"
         android:contentDescription="@string/desc_add_candidate"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigationCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_input_add"
         app:tint="@color/white"
-        app:backgroundTint="@color/primary" />
+        app:backgroundTint="@color/violet_accent"
+        app:elevation="8dp" />
 
     <!-- Custom Bottom Navigation Bar -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/bottomNavigationCard"
         android:layout_width="0dp"
-        android:layout_height="64dp"
+        android:layout_height="72dp"
         app:cardCornerRadius="0dp"
-        app:cardElevation="8dp"
+        app:cardElevation="16dp"
         app:cardBackgroundColor="@color/white"
         app:strokeWidth="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -317,7 +373,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
 
             <!-- Tab 1: Beranda (Selected) -->
             <LinearLayout
@@ -325,7 +382,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:clickable="true"
                 android:focusable="true"
@@ -335,16 +392,16 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     app:srcCompat="@drawable/ic_nav_home"
-                    app:tint="@color/primary" />
+                    app:tint="@color/violet_accent" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     android:text="@string/nav_home"
-                    android:textColor="@color/primary"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/violet_accent"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium" />
             </LinearLayout>
 
             <!-- Tab 2: Tes -->
@@ -353,7 +410,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:clickable="true"
                 android:focusable="true"
@@ -363,15 +420,16 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     app:srcCompat="@drawable/ic_nav_test"
-                    app:tint="@color/secondary" />
+                    app:tint="@color/text_hint" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     android:text="@string/nav_test"
-                    android:textColor="@color/secondary"
-                    android:textSize="10sp" />
+                    android:textColor="@color/text_hint"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium" />
             </LinearLayout>
 
             <!-- Tab 3: Orang -->
@@ -380,7 +438,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:clickable="true"
                 android:focusable="true"
@@ -390,15 +448,16 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     app:srcCompat="@drawable/ic_nav_people"
-                    app:tint="@color/secondary" />
+                    app:tint="@color/text_hint" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     android:text="@string/nav_people"
-                    android:textColor="@color/secondary"
-                    android:textSize="10sp" />
+                    android:textColor="@color/text_hint"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium" />
             </LinearLayout>
 
             <!-- Tab 4: Hasil -->
@@ -407,7 +466,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:clickable="true"
                 android:focusable="true"
@@ -417,15 +476,16 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     app:srcCompat="@drawable/ic_nav_results"
-                    app:tint="@color/secondary" />
+                    app:tint="@color/text_hint" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     android:text="@string/nav_results"
-                    android:textColor="@color/secondary"
-                    android:textSize="10sp" />
+                    android:textColor="@color/text_hint"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium" />
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
