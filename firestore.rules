@@ -3,19 +3,32 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Task 4.3 (Max): Bug Fix - Allow participants to access their data via token
-    // In this demo project, we allow public read/write for participants
-    // so they can verify tokens and save answers without Firebase Auth.
+    // 1. Peserta (participants)
     match /participants/{participantId} {
-      allow read, write: if true;
+      // Izinkan baca untuk verifikasi token
+      allow read: if true;
+
+      // HANYA boleh update field tertentu (progress, answers, status)
+      // Ini mencegah orang iseng mengubah Nama atau Email kandidat lain
+      allow update: if request.resource.data.diff(resource.data).affectedKeys()
+        .hasOnly(['progress', 'answers', 'status']);
     }
 
-    // Reports are sensitive and only for HR Admin (Authenticated)
+    // 2. Laporan (reports)
     match /reports/{reportId} {
-      allow read, write: if request.auth != null;
+      // HANYA boleh 'create' (buat baru), TIDAK boleh edit atau hapus yang sudah ada
+      // Ini mencegah peserta mengubah nilai yang sudah dikirim
+      allow create: if true;
+
+      // Hanya Admin yang login yang bisa melihat/membaca daftar laporan
+      allow read: if request.auth != null;
+
+      // Tidak ada yang boleh menghapus atau mengubah laporan (termasuk admin dari app)
+      // Untuk keamanan data nilai
+      allow update, delete: if false;
     }
 
-    // Default rule: deny everything else
+    // Default: Tolak semua akses lainnya
     match /{document=**} {
       allow read, write: if false;
     }
