@@ -47,6 +47,14 @@
             android:label="@string/reports_title" />
 
         <activity
+            android:name=".ui.view.TestsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.view.PeopleActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
 

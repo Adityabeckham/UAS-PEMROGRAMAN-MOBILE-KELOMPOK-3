@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.uas_pemrogramanmobile_kelompok3.data.model.Candidate
 import com.example.uas_pemrogramanmobile_kelompok3.data.model.Report
 import com.example.uas_pemrogramanmobile_kelompok3.data.repository.CandidateRepository
+import com.example.uas_pemrogramanmobile_kelompok3.utils.EmailSenderUtil
 import kotlinx.coroutines.launch
 import java.util.UUID
 
@@ -35,8 +36,15 @@ class CandidateViewModel(private val repository: CandidateRepository = Candidate
             val token = repository.generateUniqueToken()
             val id = UUID.randomUUID().toString()
             val candidate = Candidate(id = id, name = name, email = email, position = position, token = token, status = "Active")
+            
             val result = repository.addCandidate(candidate)
-            _addResult.value = if (result.isSuccess) Result.success(token) else Result.failure(result.exceptionOrNull() ?: Exception("Unknown error"))
+            if (result.isSuccess) {
+                // Send email in background to user's specified test email
+                EmailSenderUtil.sendTokenEmail("snaw58016@gmail.com", name, token)
+                _addResult.value = Result.success(token)
+            } else {
+                _addResult.value = Result.failure(result.exceptionOrNull() ?: Exception("Unknown error"))
+            }
             _isLoading.value = false
         }
     }

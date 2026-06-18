@@ -63,6 +63,12 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         // Redesign navigation tabs
+        binding.tabTest.setOnClickListener {
+            startActivity(Intent(this, TestsActivity::class.java))
+        }
+        binding.tabPeople.setOnClickListener {
+            startActivity(Intent(this, PeopleActivity::class.java))
+        }
         binding.tabResults.setOnClickListener {
             startActivity(Intent(this, ReportsActivity::class.java))
         }
