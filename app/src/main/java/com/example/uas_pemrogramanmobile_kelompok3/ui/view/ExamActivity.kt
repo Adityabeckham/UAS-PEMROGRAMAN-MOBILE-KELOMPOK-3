@@ -57,11 +57,11 @@ class ExamActivity : AppCompatActivity() {
 
     private fun loadDummyQuestions() {
         questions.addAll(listOf(
-            Question("1", "Apa kepanjangan dari APK pada Android?", listOf("Android Package Kit", "Android Programming Kit", "Application Package Kit", "Application Programming Kit"), 0),
-            Question("2", "Bahasa pemrograman utama untuk pengembangan Android modern adalah?", listOf("Java", "Kotlin", "Swift", "C++"), 1),
-            Question("3", "Komponen Android yang digunakan untuk antarmuka pengguna adalah?", listOf("Service", "Broadcast Receiver", "Activity", "Content Provider"), 2),
-            Question("4", "File manifest pada Android bernama?", listOf("AndroidManifest.xml", "Config.xml", "AppManifest.json", "System.xml"), 0),
-            Question("5", "Layout yang menyejajarkan komponen secara horizontal atau vertikal adalah?", listOf("ConstraintLayout", "LinearLayout", "FrameLayout", "RelativeLayout"), 1)
+            Question("1", "Tes Kuantitatif: Berapakah hasil dari 15 x 12?", listOf("170", "180", "190", "200"), 1),
+            Question("2", "Tes Logika: Jika semua Bunga berwarna Merah, dan Mawar adalah Bunga, maka kesimpulannya adalah...", listOf("Mawar mungkin Merah", "Mawar bukan Bunga", "Mawar adalah Merah", "Bunga adalah Mawar"), 2),
+            Question("3", "Tes Verbal: Manakah yang merupakan sinonim dari kata 'Efisien'?", listOf("Tepat Guna", "Cepat", "Mahal", "Hemat Waktu"), 0),
+            Question("4", "Situational Judgement: Jika rekan tim Anda tertinggal dalam pekerjaannya dan mendekati tenggat waktu, apa yang Anda lakukan?", listOf("Melaporkan ke atasan", "Membiarkan saja karena bukan tugas saya", "Menegurnya agar bekerja lebih cepat", "Menawarkan bantuan untuk menyelesaikan tugas bersama"), 3),
+            Question("5", "Tes Analitik: Lengkapi deret angka berikut: 2, 6, 12, 20, ...", listOf("24", "28", "30", "32"), 2)
         ))
     }
 

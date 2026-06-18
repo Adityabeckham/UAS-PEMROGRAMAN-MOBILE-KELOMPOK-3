@@ -56,23 +56,26 @@ class AddCandidateActivity : AppCompatActivity() {
 
         binding.etCandidateName.addTextChangedListener(watcher)
         binding.etCandidateEmail.addTextChangedListener(watcher)
+        binding.etCandidatePosition.addTextChangedListener(watcher)
     }
 
     private fun validateForm() {
         val name = binding.etCandidateName.text.toString().trim()
         val email = binding.etCandidateEmail.text.toString().trim()
+        val position = binding.etCandidatePosition.text.toString().trim()
 
         val isNameValid = name.isNotEmpty()
         val isEmailValid = email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+        val isPositionValid = position.isNotEmpty()
 
-        binding.btnSaveCandidate.isEnabled = isNameValid && isEmailValid
+        binding.btnSaveCandidate.isEnabled = isNameValid && isEmailValid && isPositionValid
     }
 
     private fun setupListeners() {
         binding.btnSaveCandidate.setOnClickListener {
             val name = binding.etCandidateName.text.toString().trim()
             val email = binding.etCandidateEmail.text.toString().trim()
-            val position = "Umum" // Default position as it was removed from UI
+            val position = binding.etCandidatePosition.text.toString().trim()
             viewModel.addCandidate(name, email, position)
         }
     }
