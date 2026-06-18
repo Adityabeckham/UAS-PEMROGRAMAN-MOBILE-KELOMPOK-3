@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -87,7 +88,7 @@ class PortalMasukActivity : AppCompatActivity() {
         }
         
         binding.tvForgotToken.setOnClickListener {
-            Toast.makeText(this, "Silakan hubungi admin ujian kelompok 3 untuk mendapatkan token Anda.", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Silakan hubungi Engineer kelompok 3 untuk mendapatkan token Anda.", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -96,18 +97,25 @@ class PortalMasukActivity : AppCompatActivity() {
             result.onSuccess { candidate ->
                 if (candidate != null) {
                     if (candidate.status == "Completed") {
-                        Toast.makeText(this, "Ujian sudah selesai untuk token ini.", Toast.LENGTH_LONG).show()
+                        Snackbar.make(binding.root, "Ujian sudah selesai untuk token ini.", Snackbar.LENGTH_LONG).show()
                     } else {
+                        Snackbar.make(binding.root, "Token valid. Selamat mengerjakan!", Snackbar.LENGTH_LONG)
+                            .setBackgroundTint(resources.getColor(R.color.navy_dark, null))
+                            .show()
                         val intent = Intent(this, ExamActivity::class.java).apply {
                             putExtra("CANDIDATE_ID", candidate.id)
                         }
                         startActivity(intent)
                     }
                 } else {
-                    Toast.makeText(this, getString(R.string.error_invalid_token), Toast.LENGTH_SHORT).show()
+                    Snackbar.make(binding.root, getString(R.string.error_invalid_token), Snackbar.LENGTH_LONG)
+                        .setBackgroundTint(resources.getColor(android.R.color.holo_red_dark, null))
+                        .show()
                 }
             }.onFailure { exception ->
-                Toast.makeText(this, "Gagal terhubung ke server: ${exception.message}", Toast.LENGTH_LONG).show()
+                Snackbar.make(binding.root, "Gagal terhubung ke server: ${exception.message}", Snackbar.LENGTH_LONG)
+                    .setBackgroundTint(resources.getColor(android.R.color.holo_red_dark, null))
+                    .show()
             }
         }
         

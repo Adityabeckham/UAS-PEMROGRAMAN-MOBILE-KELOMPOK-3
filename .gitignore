@@ -6,6 +6,8 @@ captures/
 .externalNativeBuild/
 .cxx/
 
+
+
 # Memblokir file lokal & spesifik (Wajib)
 local.properties
 *.iml

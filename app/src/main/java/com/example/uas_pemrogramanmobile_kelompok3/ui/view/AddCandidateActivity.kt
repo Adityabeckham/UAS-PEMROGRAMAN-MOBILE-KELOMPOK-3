@@ -93,7 +93,9 @@ class AddCandidateActivity : AppCompatActivity() {
                 showTokenDialog(name, token)
             }.onFailure { exception ->
                 val errorMsg = exception.message ?: getString(R.string.error_unknown)
-                Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show()
+                com.google.android.material.snackbar.Snackbar.make(binding.root, errorMsg, com.google.android.material.snackbar.Snackbar.LENGTH_LONG)
+                    .setBackgroundTint(resources.getColor(android.R.color.holo_red_dark, null))
+                    .show()
             }
         }
     }
