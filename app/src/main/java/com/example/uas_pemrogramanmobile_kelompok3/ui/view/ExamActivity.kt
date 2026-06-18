@@ -75,6 +75,8 @@ class ExamActivity : AppCompatActivity() {
             if (currentQuestionIndex < questions.size - 1) {
                 currentQuestionIndex++
                 displayQuestion()
+            } else {
+                showFinishConfirmation()
             }
         }
 
@@ -84,10 +86,6 @@ class ExamActivity : AppCompatActivity() {
                 currentQuestionIndex--
                 displayQuestion()
             }
-        }
-
-        binding.btnFinish.setOnClickListener {
-            showFinishConfirmation()
         }
     }
 
@@ -133,11 +131,9 @@ class ExamActivity : AppCompatActivity() {
         binding.btnPrevious.visibility = if (currentQuestionIndex == 0) View.GONE else View.VISIBLE
         
         if (currentQuestionIndex == questions.size - 1) {
-            binding.btnNext.visibility = View.GONE
-            binding.btnFinish.visibility = View.VISIBLE
+            binding.btnNext.text = getString(R.string.btn_finish)
         } else {
-            binding.btnNext.visibility = View.VISIBLE
-            binding.btnFinish.visibility = View.GONE
+            binding.btnNext.text = getString(R.string.btn_next)
         }
     }
 

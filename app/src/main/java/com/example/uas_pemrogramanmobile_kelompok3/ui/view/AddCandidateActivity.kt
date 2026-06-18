@@ -42,9 +42,7 @@ class AddCandidateActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar() {
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+        binding.btnBack.setOnClickListener { finish() }
     }
 
     private fun setupValidation() {
@@ -56,50 +54,42 @@ class AddCandidateActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {}
         }
 
-        binding.etFullName.addTextChangedListener(watcher)
-        binding.etEmail.addTextChangedListener(watcher)
-        binding.etPosition.addTextChangedListener(watcher)
+        binding.etCandidateName.addTextChangedListener(watcher)
+        binding.etCandidateEmail.addTextChangedListener(watcher)
     }
 
     private fun validateForm() {
-        val name = binding.etFullName.text.toString().trim()
-        val email = binding.etEmail.text.toString().trim()
-        val position = binding.etPosition.text.toString().trim()
+        val name = binding.etCandidateName.text.toString().trim()
+        val email = binding.etCandidateEmail.text.toString().trim()
 
         val isNameValid = name.isNotEmpty()
         val isEmailValid = email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
-        val isPositionValid = position.isNotEmpty()
 
-        binding.btnSave.isEnabled = isNameValid && isEmailValid && isPositionValid
+        binding.btnSaveCandidate.isEnabled = isNameValid && isEmailValid
     }
 
     private fun setupListeners() {
-        binding.btnCancel.setOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
-        }
-
-        binding.btnSave.setOnClickListener {
-            val name = binding.etFullName.text.toString().trim()
-            val email = binding.etEmail.text.toString().trim()
-            val position = binding.etPosition.text.toString().trim()
+        binding.btnSaveCandidate.setOnClickListener {
+            val name = binding.etCandidateName.text.toString().trim()
+            val email = binding.etCandidateEmail.text.toString().trim()
+            val position = "Umum" // Default position as it was removed from UI
             viewModel.addCandidate(name, email, position)
         }
     }
 
     private fun observeViewModel() {
         viewModel.isLoading.observe(this) { isLoading ->
-            binding.btnSave.isEnabled = !isLoading
-            binding.btnCancel.isEnabled = !isLoading
+            binding.btnSaveCandidate.isEnabled = !isLoading
             if (isLoading) {
-                binding.btnSave.text = getString(R.string.btn_saving)
+                binding.btnSaveCandidate.text = getString(R.string.btn_saving)
             } else {
-                binding.btnSave.text = getString(R.string.btn_save)
+                binding.btnSaveCandidate.text = "Daftarkan & Generate Token"
             }
         }
 
         viewModel.addResult.observe(this) { result ->
             result.onSuccess { token ->
-                val name = binding.etFullName.text.toString().trim()
+                val name = binding.etCandidateName.text.toString().trim()
                 showTokenDialog(name, token)
             }.onFailure { exception ->
                 val errorMsg = exception.message ?: getString(R.string.error_unknown)

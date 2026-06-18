@@ -27,8 +27,8 @@ Aplikasi mobile berbasis Android yang memfasilitasi proses assessment klien. Sis
 | --- | -------------------- | ------------------------------------------------------------------------------------------------------------- | --------- |
 | F01 | Autentikasi HR       | Sebagai Klien (HR), saya ingin login dengan email dan password agar dapat mengakses dashboard manajemen.      | P0        |
 | F02 | Manajemen Peserta    | Sebagai Klien, saya ingin menginput data peserta baru agar mereka terdaftar di dalam sistem assessment.       | P0        |
-| F03 | Distribusi Token     | Sebagai Klien, saya ingin sistem memunculkan dan mengirimkan token unik otomatis untuk akses tes peserta.     | P1        |
-| F04 | Login Peserta        | Sebagai Peserta, saya ingin login ke portal assessment menggunakan token yang di-generate oleh Klien.         | P0        |
+| F03 | Distribusi Token     | Sebagai Klien, saya ingin sistem memunculkan dan mengirimkan token unik otomatis  melalui email untuk akses login tes peserta.     | P1        |
+| F04 | Login Peserta        | Sebagai Peserta, saya ingin login ke portal assessment menggunakan token dari Email yang di-generate oleh Klien.         | P0        |
 | F05 | Sesi Tes             | Sebagai Peserta, saya ingin menjawab soal dengan antarmuka yang fokus agar proses assessment berjalan lancar. | P0        |
 | F06 | Monitoring Real-time | Sebagai Klien, saya ingin melihat progres pengerjaan tes peserta secara langsung (live) dari dashboard.       | P1        |
 | F07 | Laporan Hasil        | Sebagai Klien, saya ingin mengunduh laporan skor dan hasil tes peserta yang sudah selesai.                    | P2        |

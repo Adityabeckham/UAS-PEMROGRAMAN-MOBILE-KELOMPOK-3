@@ -7,42 +7,70 @@
     android:background="@color/background"
     tools:context=".ui.view.ExamActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+    <!-- Premium App Bar -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/appBarCard"
         android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
+        android:layout_height="76dp"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/white"
+        app:strokeWidth="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/exam_title"
-        app:titleTextColor="@color/on_background" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tvTimer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:textColor="@color/error"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/toolbar"
-        app:layout_constraintEnd_toEndOf="@id/toolbar"
-        app:layout_constraintTop_toTopOf="@id/toolbar"
-        tools:text="00:00" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp">
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/outline"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/exam_title"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-medium" />
+                    
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Token: DummyToken"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button_gradient"
+                android:backgroundTint="#FFEBEE"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:textColor="#D32F2F"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-medium"
+                tools:text="45:00" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/examProgress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintTop_toBottomOf="@id/appBarCard"
+        app:indicatorColor="@color/violet_accent"
+        app:trackColor="@color/outline"
         tools:progress="30" />
 
     <androidx.core.widget.NestedScrollView
@@ -58,25 +86,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/margin_mobile">
+            android:padding="24dp">
 
             <TextView
                 android:id="@+id/tvQuestionIndicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/secondary"
+                android:textColor="@color/violet_accent"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                tools:text="Soal 1 dari 20" />
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.05"
+                tools:text="SOAL 1 DARI 20" />
 
             <TextView
                 android:id="@+id/tvQuestionText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:textColor="@color/on_background"
-                android:textSize="18sp"
-                android:lineSpacingExtra="4dp"
+                android:textColor="@color/text_primary"
+                android:textSize="20sp"
+                android:lineSpacingExtra="6dp"
+                android:fontFamily="sans-serif-medium"
                 tools:text="Apa yang dimaksud dengan Activity pada Android?" />
 
             <RadioGroup
@@ -90,10 +120,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    android:background="@drawable/ic_launcher_background"
-                    android:backgroundTint="@color/surface_variant"
+                    android:background="@drawable/bg_button_gradient"
+                    android:backgroundTint="@color/white"
+                    android:elevation="2dp"
                     android:padding="16dp"
-                    app:useMaterialThemeColors="true"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
                     tools:text="Sebuah komponen UI tunggal" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
@@ -101,9 +133,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    android:background="@drawable/ic_launcher_background"
-                    android:backgroundTint="@color/surface_variant"
+                    android:background="@drawable/bg_button_gradient"
+                    android:backgroundTint="@color/white"
+                    android:elevation="2dp"
                     android:padding="16dp"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
                     tools:text="Sebuah service di background" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
@@ -111,9 +146,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    android:background="@drawable/ic_launcher_background"
-                    android:backgroundTint="@color/surface_variant"
+                    android:background="@drawable/bg_button_gradient"
+                    android:backgroundTint="@color/white"
+                    android:elevation="2dp"
                     android:padding="16dp"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
                     tools:text="Sebuah database lokal" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
@@ -121,9 +159,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    android:background="@drawable/ic_launcher_background"
-                    android:backgroundTint="@color/surface_variant"
+                    android:background="@drawable/bg_button_gradient"
+                    android:backgroundTint="@color/white"
+                    android:elevation="2dp"
                     android:padding="16dp"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
                     tools:text="Sebuah alat pengolah gambar" />
 
             </RadioGroup>
@@ -136,40 +177,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/white"
+        android:elevation="8dp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnPrevious"
-            style="@style/Widget.Material3.Button.OutlinedButton"
+            style="@style/Widget.AssessPro.Button.Tonal"
             android:layout_width="0dp"
-            android:layout_height="56dp"
+            android:layout_height="60dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:text="@string/btn_previous"
-            app:cornerRadius="12dp" />
+            android:text="@string/btn_previous" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnNext"
             style="@style/Widget.AssessPro.Button"
             android:layout_width="0dp"
-            android:layout_height="56dp"
+            android:layout_height="60dp"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
+            android:background="@drawable/bg_button_gradient"
+            app:backgroundTint="@null"
             android:text="@string/btn_next" />
-
     </LinearLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnFinish"
-        style="@style/Widget.Material3.Button.TonalButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="@string/btn_finish"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/toolbar"
-        app:layout_constraintEnd_toEndOf="@id/toolbar"
-        app:layout_constraintTop_toTopOf="@id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
