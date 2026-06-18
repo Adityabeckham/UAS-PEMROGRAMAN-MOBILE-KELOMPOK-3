@@ -125,22 +125,28 @@ service cloud.firestore {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
     
-    // Peserta hanya bisa membuat dan meng-update jawaban mereka sendiri di koleksi sessions
-    match /sessions/{sessionId} {
-      // Validasi saat Create sesi baru (menggunakan request.resource.data)
-      allow create: if request.auth != null && request.resource.data.participant_id == request.auth.uid;
-      
-      // Validasi saat Update jawaban / Read data (menggunakan resource.data)
-      allow update, read: if request.auth != null && resource.data.participant_id == request.auth.uid;
-      
-      // Mengizinkan Client membaca semua session berdasarkan role mereka
-      allow read: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'client';
+    // Aturan Koleksi Participants (Klien HR bisa menambah dan membaca)
+    match /participants/{participantId} {
+      allow read, write: if request.auth != null; 
+    }
+
+    // Aturan Koleksi Assessments & Clients
+    match /assessments/{assessmentId} {
+      allow read, write: if request.auth != null;
+    }
+    match /clients/{clientId} {
+      allow read, write: if request.auth != null;
     }
     
-    // Hanya Client yang bisa membaca Report akhir
+    // Peserta hanya bisa membuat dan meng-update jawaban mereka sendiri di koleksi sessions
+    match /sessions/{sessionId} {
+      allow create: if request.auth != null && request.resource.data.participant_id == request.auth.uid;
+      allow update, read: if request.auth != null && resource.data.participant_id == request.auth.uid;
+      allow read: if request.auth != null;
+    }
+    
     match /reports/{reportId} {
-      allow read: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'client';
-      allow write: if false; // Report hanya bisa ditulis melalui sistem/backend internal
+      allow read, write: if request.auth != null;
     }
   }
 }

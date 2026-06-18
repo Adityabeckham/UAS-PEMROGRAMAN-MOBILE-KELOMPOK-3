@@ -248,6 +248,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/copyright_notice"
+                    android:textAlignment="center"
                     android:textColor="@color/text_hint"
                     android:textSize="12sp" />
 
@@ -256,6 +257,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="@string/created_by_team"
+                    android:textAlignment="center"
                     android:textColor="@color/text_hint"
                     android:textSize="12sp" />
             </LinearLayout>
