@@ -16,7 +16,7 @@ object EmailSenderUtil {
 
     // TODO: Ganti SENDER_APP_PASSWORD dengan App Password asli milik snaw58016@gmail.com!
     private const val SENDER_EMAIL = "snaw58016@gmail.com"
-    private const val SENDER_APP_PASSWORD = "snawcarryus" // GANTI INI DENGAN APP PASSWORD GMAIL 
+    private const val SENDER_APP_PASSWORD = "usqm butg okmv ldkx" // GANTI INI DENGAN APP PASSWORD GMAIL 
 
     suspend fun sendTokenEmail(targetEmail: String, candidateName: String, token: String): Boolean {
         return withContext(Dispatchers.IO) {

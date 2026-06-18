@@ -75,12 +75,16 @@ class LoginActivity : AppCompatActivity() {
         viewModel.loginResult.observe(this) { result ->
             val (success, message) = result
             if (success) {
-                Toast.makeText(this, getString(R.string.login_success), Toast.LENGTH_SHORT).show()
+                com.google.android.material.snackbar.Snackbar.make(binding.root, getString(R.string.login_success), com.google.android.material.snackbar.Snackbar.LENGTH_LONG)
+                    .setBackgroundTint(resources.getColor(R.color.navy_dark, null))
+                    .show()
                 startActivity(Intent(this, DashboardActivity::class.java))
                 finishAffinity() // Clear activity stack
             } else {
                 val errorMsg = if (message != null) getString(R.string.error_login_failed) else getString(R.string.error_unknown)
-                Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show()
+                com.google.android.material.snackbar.Snackbar.make(binding.root, errorMsg, com.google.android.material.snackbar.Snackbar.LENGTH_LONG)
+                    .setBackgroundTint(resources.getColor(android.R.color.holo_red_dark, null))
+                    .show()
             }
         }
 

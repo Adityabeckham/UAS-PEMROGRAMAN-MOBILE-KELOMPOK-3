@@ -6,6 +6,9 @@ captures/
 .externalNativeBuild/
 .cxx/
 
+# Sandi Aplikasi Gmail
+usqm butg okmv ldkx
+
 # Memblokir file lokal & spesifik (Wajib)
 local.properties
 *.iml
