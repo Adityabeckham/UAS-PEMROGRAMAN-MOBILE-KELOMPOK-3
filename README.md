@@ -1,4 +1,4 @@
-# AssessPro - Sistem Assessment HR Terpadu
+# AssessPro - Sistem Assessment Layanan Test 
 
 AssessPro adalah aplikasi *mobile* berbasis **Android Native (Kotlin)** yang dirancang untuk memfasilitasi proses rekrutmen dan *assessment test* secara digital. Aplikasi ini memiliki dua portal utama: **Admin HR** (untuk mendaftarkan kandidat, memantau *progress* secara *real-time*, dan melihat hasil laporan tes) dan **Portal Peserta** (untuk mengerjakan soal tes *assessment*).
 
@@ -10,9 +10,9 @@ AssessPro dibangun menggunakan arsitektur MVVM (Model-View-ViewModel) dan menggu
 
 | Nama | NPM | Peran |
 | --- | --- | --- |
-| Aditya Beckham | [ISI NPM ANDA] | [PERAN ANDA] |
-| Max | [ISI NPM MAX] | [PERAN MAX] |
-| [NAMA ANGGOTA 3] | [NPM 3] | [PERAN 3] |
+| Aditya Beckham | 24552011066 | Software Engineer Lead |
+| Anisa Ansuya Henna | 24552011020 | Frontend Developer |
+| Max Devon | 24552011094 | Backend Developer |
 
 ---
 
