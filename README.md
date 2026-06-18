@@ -24,13 +24,13 @@ Tonton video presentasi dan demo lengkap aplikasi kami di link berikut:
 ---
 
 ## Akun Demo
-- HR EMAIL: adminhr@gmail.com
-- HR PASSWORD: adminhr123
-- Peserta Test:
-- 
+- HR EMAIL: `adminhr@gmail.com`
+- HR PASSWORD: `adminhr123`
+- Peserta Test: `Gunakan token yang di-generate dari dashboard HR`
+
 ## 📸 Screenshot Aplikasi
 
-*HR Klien *
+*HR Klien*
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/e99ef2d1-9d3d-4b5d-ad6a-3caa28558aa6" width="200" alt="Portal Login"/>
@@ -41,17 +41,13 @@ Tonton video presentasi dan demo lengkap aplikasi kami di link berikut:
   <img src="https://github.com/user-attachments/assets/1ef51a57-9c0b-4eb1-889e-59d7241fa863" width="200" alt="Laporan Test"/>
 </p>
 
-
-*Peserta Test / Kandidat *
+*Peserta Test / Kandidat*
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/e99ef2d1-9d3d-4b5d-ad6a-3caa28558aa6" width="200" alt="Portal Login"/>
-  <img src="<img width="161" height="300" alt="Screenshot 2026-06-18 201947" src="https://github.com/user-attachments/assets/61bbd65d-1577-4cb9-8b3d-03ece1acce2c" />
-" width="200" alt="Kandidat menerima Email Token Login"/>
-  <img src="<img width="146" height="281" alt="Screenshot 2026-06-18 202027" src="https://github.com/user-attachments/assets/956f2c4e-08c7-4a08-a00d-727dc805147c" />
-" width="200" alt="Kandidat Login Token"/>
-  <img src="<img width="140" height="287" alt="Screenshot 2026-06-18 202052" src="https://github.com/user-attachments/assets/809b379f-802e-4bef-96ea-f87b65a2afcc" />
-" width="200" alt="Kandidat Mengerjakan Test"/>
+  <img src="https://github.com/user-attachments/assets/61bbd65d-1577-4cb9-8b3d-03ece1acce2c" width="200" alt="Kandidat menerima Email Token Login"/>
+  <img src="https://github.com/user-attachments/assets/956f2c4e-08c7-4a08-a00d-727dc805147c" width="200" alt="Kandidat Login Token"/>
+  <img src="https://github.com/user-attachments/assets/809b379f-802e-4bef-96ea-f87b65a2afcc" width="200" alt="Kandidat Mengerjakan Test"/>
 </p>
 
 ---
