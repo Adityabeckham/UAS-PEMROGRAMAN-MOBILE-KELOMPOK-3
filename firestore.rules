@@ -1,40 +1,35 @@
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Kumpulan Aturan Firebase untuk Sistem Assessment
-
     // 1. Peserta (participants)
-    // Peserta ujian BELUM memiliki Firebase Auth, jadi operasi read & update harus `if true`.
-    // HR (Admin) memiliki Auth, jadi create butuh `request.auth != null`.
     match /participants/{participantId} {
+      // Izinkan baca untuk verifikasi token oleh peserta
       allow read: if true;
-      allow update: if true;
-      allow create, delete: if request.auth != null;
+
+      // Izinkan HR (Authenticated) untuk mendaftarkan (create) peserta baru
+      allow create: if request.auth != null;
+
+      // Izinkan update progress/jawaban oleh peserta atau update penuh oleh HR
+      allow update: if request.auth != null ||
+        request.resource.data.diff(resource.data).affectedKeys()
+        .hasOnly(['progress', 'answers', 'status']);
     }
 
     // 2. Laporan (reports)
-    // Saat ujian selesai, peserta ujian membuat laporan (tanpa Auth).
-    // HR membacanya (dengan Auth).
     match /reports/{reportId} {
+      // Izinkan siapa saja membuat laporan saat selesai ujian
       allow create: if true;
-      allow read, update, delete: if request.auth != null;
+
+      // Hanya Admin yang login yang bisa melihat laporan
+      allow read: if request.auth != null;
+
+      // Laporan tidak boleh diubah atau dihapus
+      allow update, delete: if false;
     }
 
-    // 3. User HR (users)
-    match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-    }
-
-    // 4. Pengaturan Assessment & Klien
-    match /assessments/{assessmentId} {
-      allow read, write: if request.auth != null;
-    }
-    match /clients/{clientId} {
-      allow read, write: if request.auth != null;
-    }
-
-    // Default Tolak Akses Lainnya
+    // Default: Tolak akses lainnya
     match /{document=**} {
       allow read, write: if false;
     }

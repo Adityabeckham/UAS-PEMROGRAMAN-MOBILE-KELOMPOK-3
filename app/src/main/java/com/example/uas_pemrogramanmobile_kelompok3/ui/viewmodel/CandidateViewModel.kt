@@ -23,7 +23,6 @@ class CandidateViewModel(private val repository: CandidateRepository = Candidate
     private val _completeResult = MutableLiveData<Result<Int>>()
     val completeResult: LiveData<Result<Int>> = _completeResult
     
-    // Task 4.3 (Max): Result for participant token verification
     private val _participantLoginResult = MutableLiveData<Result<Candidate?>>()
     val participantLoginResult: LiveData<Result<Candidate?>> = _participantLoginResult
 
@@ -39,8 +38,8 @@ class CandidateViewModel(private val repository: CandidateRepository = Candidate
             
             val result = repository.addCandidate(candidate)
             if (result.isSuccess) {
-                // Send email in background to user's specified test email
-                EmailSenderUtil.sendTokenEmail("snaw58016@gmail.com", name, token)
+                // FIX: Gunakan variabel 'email' dari parameter, bukan hardcoded!
+                EmailSenderUtil.sendTokenEmail(email, name, token)
                 _addResult.value = Result.success(token)
             } else {
                 _addResult.value = Result.failure(result.exceptionOrNull() ?: Exception("Unknown error"))
@@ -49,7 +48,6 @@ class CandidateViewModel(private val repository: CandidateRepository = Candidate
         }
     }
 
-    // Task 4.3 (Max): Verify token logic
     fun loginParticipant(token: String) {
         viewModelScope.launch {
             _isLoading.value = true
