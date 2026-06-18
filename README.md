@@ -25,7 +25,7 @@ Tonton video presentasi dan demo lengkap aplikasi kami di link berikut:
 
 ## 📸 Screenshot Aplikasi
 
-*HR Klien Login*
+*HR Klien *
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/e99ef2d1-9d3d-4b5d-ad6a-3caa28558aa6" width="200" alt="Portal Login"/>
