@@ -27,6 +27,8 @@ class DashboardActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[CandidateViewModel::class.java]
 
+        // setSupportActionBar(binding.toolbar) // Removed due to custom app bar
+
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
