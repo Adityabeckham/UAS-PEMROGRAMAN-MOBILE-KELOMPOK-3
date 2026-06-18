@@ -13,13 +13,13 @@ class CandidateRepository(private val firestore: FirebaseFirestore = FirebaseFir
     private val candidateCollection = firestore.collection("participants")
     private val reportCollection = firestore.collection("reports")
 
-    // Kunci Jawaban Dummy
+    // Kunci Jawaban Assessment Umum
     private val answerKeys = mapOf(
-        "1" to 0, // APK -> Android Package Kit
-        "2" to 1, // Language -> Kotlin
-        "3" to 2, // UI Component -> Activity
-        "4" to 0, // Manifest -> AndroidManifest.xml
-        "5" to 1  // Layout -> LinearLayout
+        "1" to 1, // Matematika: 15 x 12 = 180 (Index 1)
+        "2" to 2, // Logika: Mawar adalah Bunga Merah (Index 2)
+        "3" to 0, // Sinonim: Efisien = Tepat Guna (Index 0)
+        "4" to 3, // Kepemimpinan/Situasi (Index 3)
+        "5" to 2  // Deret Angka (Index 2)
     )
 
     suspend fun addCandidate(candidate: Candidate): Result<Unit> {
