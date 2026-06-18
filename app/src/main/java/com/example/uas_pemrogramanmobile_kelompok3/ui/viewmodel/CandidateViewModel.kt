@@ -39,8 +39,12 @@ class CandidateViewModel(private val repository: CandidateRepository = Candidate
             val result = repository.addCandidate(candidate)
             if (result.isSuccess) {
                 // FIX: Gunakan variabel 'email' dari parameter, bukan hardcoded!
-                EmailSenderUtil.sendTokenEmail(email, name, token)
-                _addResult.value = Result.success(token)
+                val emailSent = EmailSenderUtil.sendTokenEmail(email, name, token)
+                if (emailSent) {
+                    _addResult.value = Result.success(token)
+                } else {
+                    _addResult.value = Result.failure(Exception("Kandidat berhasil ditambahkan, namun GAGAL mengirim email ke $email. Periksa password SMTP atau folder Spam!"))
+                }
             } else {
                 _addResult.value = Result.failure(result.exceptionOrNull() ?: Exception("Unknown error"))
             }
