@@ -1,4 +1,4 @@
-package com.example.uas_pemrogramanmobile_kelompok3.ui.view
+package com.example.uas_pemrogramanmobile_kelompok3.ui.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater

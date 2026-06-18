@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.uas_pemrogramanmobile_kelompok3.databinding.ActivityReportsBinding
+import com.example.uas_pemrogramanmobile_kelompok3.ui.adapter.ReportAdapter
 import com.example.uas_pemrogramanmobile_kelompok3.ui.viewmodel.CandidateViewModel
 
 class ReportsActivity : AppCompatActivity() {

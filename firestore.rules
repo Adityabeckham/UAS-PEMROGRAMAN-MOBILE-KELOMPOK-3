@@ -1,34 +1,40 @@
 rules_version = '2';
-
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // 1. Peserta (participants)
-    match /participants/{participantId} {
-      // Izinkan baca untuk verifikasi token
-      allow read: if true;
+    // Kumpulan Aturan Firebase untuk Sistem Assessment
 
-      // HANYA boleh update field tertentu (progress, answers, status)
-      // Ini mencegah orang iseng mengubah Nama atau Email kandidat lain
-      allow update: if request.resource.data.diff(resource.data).affectedKeys()
-        .hasOnly(['progress', 'answers', 'status']);
+    // 1. Peserta (participants)
+    // Peserta ujian BELUM memiliki Firebase Auth, jadi operasi read & update harus `if true`.
+    // HR (Admin) memiliki Auth, jadi create butuh `request.auth != null`.
+    match /participants/{participantId} {
+      allow read: if true;
+      allow update: if true;
+      allow create, delete: if request.auth != null;
     }
 
     // 2. Laporan (reports)
+    // Saat ujian selesai, peserta ujian membuat laporan (tanpa Auth).
+    // HR membacanya (dengan Auth).
     match /reports/{reportId} {
-      // HANYA boleh 'create' (buat baru), TIDAK boleh edit atau hapus yang sudah ada
-      // Ini mencegah peserta mengubah nilai yang sudah dikirim
       allow create: if true;
-
-      // Hanya Admin yang login yang bisa melihat/membaca daftar laporan
-      allow read: if request.auth != null;
-
-      // Tidak ada yang boleh menghapus atau mengubah laporan (termasuk admin dari app)
-      // Untuk keamanan data nilai
-      allow update, delete: if false;
+      allow read, update, delete: if request.auth != null;
     }
 
-    // Default: Tolak semua akses lainnya
+    // 3. User HR (users)
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // 4. Pengaturan Assessment & Klien
+    match /assessments/{assessmentId} {
+      allow read, write: if request.auth != null;
+    }
+    match /clients/{clientId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Default Tolak Akses Lainnya
     match /{document=**} {
       allow read, write: if false;
     }

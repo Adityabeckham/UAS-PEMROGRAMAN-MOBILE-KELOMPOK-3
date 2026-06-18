@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.uas_pemrogramanmobile_kelompok3.data.repository.AuthRepository
 import com.example.uas_pemrogramanmobile_kelompok3.databinding.ActivityDashboardBinding
+import com.example.uas_pemrogramanmobile_kelompok3.ui.adapter.CandidateAdapter
 import com.example.uas_pemrogramanmobile_kelompok3.ui.viewmodel.CandidateViewModel
 
 class DashboardActivity : AppCompatActivity() {
