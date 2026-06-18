@@ -23,6 +23,11 @@ Tonton video presentasi dan demo lengkap aplikasi kami di link berikut:
 
 ---
 
+## Akun Demo
+- HR EMAIL: adminhr@gmail.com
+- HR PASSWORD: adminhr123
+- Peserta Test:
+- 
 ## 📸 Screenshot Aplikasi
 
 *HR Klien *
@@ -37,15 +42,16 @@ Tonton video presentasi dan demo lengkap aplikasi kami di link berikut:
 </p>
 
 
-*Peserta test/Kandidat *
+*Peserta Test / Kandidat *
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/e99ef2d1-9d3d-4b5d-ad6a-3caa28558aa6" width="200" alt="Portal Login"/>
-  <img src="https://github.com/user-attachments/assets/0adf3cee-d866-4ba2-86b2-38f68ca22c8b" width="200" alt="HR Klien Login"/>
-  <img src="https://github.com/user-attachments/assets/ebed1fe9-1f92-4566-a892-6529f369b0dc" width="200" alt="HR Tambah Kandidat"/>
-  <img src="https://github.com/user-attachments/assets/15756ed5-78ec-4c1c-8f97-c3e9dc76fef9" width="200" alt="Generate Token"/>
-  <img src="https://github.com/user-attachments/assets/02cd0447-c80b-47ee-9edc-b4eba5453950" width="200" alt="Bagikan Token"/>
-  <img src="https://github.com/user-attachments/assets/1ef51a57-9c0b-4eb1-889e-59d7241fa863" width="200" alt="Laporan Test"/>
+  <img src="<img width="161" height="300" alt="Screenshot 2026-06-18 201947" src="https://github.com/user-attachments/assets/61bbd65d-1577-4cb9-8b3d-03ece1acce2c" />
+" width="200" alt="Kandidat menerima Email Token Login"/>
+  <img src="<img width="146" height="281" alt="Screenshot 2026-06-18 202027" src="https://github.com/user-attachments/assets/956f2c4e-08c7-4a08-a00d-727dc805147c" />
+" width="200" alt="Kandidat Login Token"/>
+  <img src="<img width="140" height="287" alt="Screenshot 2026-06-18 202052" src="https://github.com/user-attachments/assets/809b379f-802e-4bef-96ea-f87b65a2afcc" />
+" width="200" alt="Kandidat Mengerjakan Test"/>
 </p>
 
 ---
