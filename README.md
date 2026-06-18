@@ -6,6 +6,20 @@ AssessPro dibangun menggunakan arsitektur MVVM (Model-View-ViewModel) dan menggu
 
 ---
 
+## 🛠️ Tech Stack & Architecture
+
+Aplikasi ini dibangun menggunakan standar industri modern untuk pengembangan Android Native:
+- **Programming Language**: Kotlin
+- **Architecture Pattern**: MVVM (Model-View-ViewModel)
+- **UI & Styling**: XML Layouts & Material Design 3 (M3)
+- **Asynchronous Programming**: Kotlin Coroutines & Flow
+- **Backend & Database**: Firebase Firestore (NoSQL Real-time DB)
+- **Authentication**: Firebase Authentication
+- **Email Integration**: JavaMail API (SMTP SMTP protocol)
+- **Build System**: Gradle (Kotlin DSL)
+
+---
+
 ## 👥 Kelompok 3
 
 | Nama | NPM | Peran |
