@@ -28,18 +28,12 @@ Tonton video presentasi dan demo lengkap aplikasi kami di link berikut:
 *HR Klien Login*
 
 <p align="center">
-  <img src="<img width="151" height="278" alt="Screenshot 2026-06-18 201155" src="https://github.com/user-attachments/assets/e99ef2d1-9d3d-4b5d-ad6a-3caa28558aa6" />
-" width="250" alt="Portal Login"/>
-  <img src="<img width="137" height="281" alt="Screenshot 2026-06-18 201248" src="https://github.com/user-attachments/assets/0adf3cee-d866-4ba2-86b2-38f68ca22c8b" />
-" width="250" alt="HR Klien Login"/>
-  <img src="<img width="145" height="281" alt="Screenshot 2026-06-18 201508" src="https://github.com/user-attachments/assets/ebed1fe9-1f92-4566-a892-6529f369b0dc" />
-" width="250" alt="HR Klien Tambah Kandidat Peserta Test"/>
-   <img src="<img width="143" height="278" alt="Screenshot 2026-06-18 201527" src="https://github.com/user-attachments/assets/15756ed5-78ec-4c1c-8f97-c3e9dc76fef9" />
-" width="250" alt="HR Klien Generate Token  Login"/>
-   <img src="<img width="148" height="280" alt="Screenshot 2026-06-18 201557" src="https://github.com/user-attachments/assets/02cd0447-c80b-47ee-9edc-b4eba5453950" />
-" width="250" alt="Bagikan Token Login Ke Email"/>
-     <img src="<img width="148" height="284" alt="Screenshot 2026-06-18 202320" src="https://github.com/user-attachments/assets/1ef51a57-9c0b-4eb1-889e-59d7241fa863" />
-" width="250" alt="Laporan Test Peserta"/>
+  <img src="https://github.com/user-attachments/assets/e99ef2d1-9d3d-4b5d-ad6a-3caa28558aa6" width="200" alt="Portal Login"/>
+  <img src="https://github.com/user-attachments/assets/0adf3cee-d866-4ba2-86b2-38f68ca22c8b" width="200" alt="HR Klien Login"/>
+  <img src="https://github.com/user-attachments/assets/ebed1fe9-1f92-4566-a892-6529f369b0dc" width="200" alt="HR Tambah Kandidat"/>
+  <img src="https://github.com/user-attachments/assets/15756ed5-78ec-4c1c-8f97-c3e9dc76fef9" width="200" alt="Generate Token"/>
+  <img src="https://github.com/user-attachments/assets/02cd0447-c80b-47ee-9edc-b4eba5453950" width="200" alt="Bagikan Token"/>
+  <img src="https://github.com/user-attachments/assets/1ef51a57-9c0b-4eb1-889e-59d7241fa863" width="200" alt="Laporan Test"/>
 </p>
 
 ---
