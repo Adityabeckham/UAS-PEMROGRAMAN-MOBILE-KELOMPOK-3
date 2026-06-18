@@ -28,6 +28,17 @@ Tonton video presentasi dan demo lengkap aplikasi kami di link berikut:
 - HR PASSWORD: `adminhr123`
 - Peserta Test: `Gunakan token yang di-generate dari dashboard HR`
 
+### Panduan Testing untuk Dosen/Penilai
+Untuk mencoba seluruh fitur aplikasi secara *End-to-End*, silakan ikuti langkah berikut:
+1. Buka aplikasi, masuk ke **Portal Login HR Klien**.
+2. Gunakan kredensial **Akun Demo HR** di atas untuk login.
+3. Di *Dashboard* HR, masuk ke menu **Tambah Kandidat**. Masukkan nama, email (gunakan email asli untuk mengecek fitur SMTP otomatis), dan posisi jabatan.
+4. Klik **Daftarkan & Generate Token**. Aplikasi akan menghasilkan 6-digit Token. Silakan catat/salin Token tersebut. *(Token juga otomatis terkirim ke email yang didaftarkan).*
+5. Kembali ke menu utama (klik *Logout* jika perlu), lalu pilih **Masuk sebagai Peserta Ujian**.
+6. Masukkan **Token** yang didapat tadi. Anda akan masuk ke halaman ujian.
+7. Coba jawab soal-soal *Assessment* yang diberikan hingga selesai dan skor muncul.
+8. Kembali lagi ke **Portal Login HR**, login, dan buka menu **Laporan**. Anda akan melihat hasil nilai dari tes yang baru saja dikerjakan!
+
 ## 📸 Screenshot Aplikasi
 
 *HR Klien*
