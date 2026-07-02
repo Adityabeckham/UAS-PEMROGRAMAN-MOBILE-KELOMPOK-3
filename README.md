@@ -102,7 +102,7 @@ Berikut adalah langkah-langkah untuk menjalankan *source code* ini secara lokal 
 
 ## 📂 Struktur Khusus Pengumpulan UAS
 
-* **APK Hasil Build:** Tersedia di dalam folder `/apk` di *root directory* repositori ini.
-* **Laporan OOAD:** Tersedia di dalam folder `/docs` atau `/ooad`.
+* **APK Hasil Build:** Tersedia di dalam folder `apk` di *root directory* repositori ini.
+* **Laporan OOAD:** Tersedia di dalam folder `docs_ooad`.
 
 *(Sistem ini dibangun secara utuh menggunakan Android Native Activity/Fragment dan RecyclerView, tanpa bantuan platform cross-platform seperti Flutter atau React Native sesuai dengan instruksi UAS).*
