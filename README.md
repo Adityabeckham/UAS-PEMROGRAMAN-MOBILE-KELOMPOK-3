@@ -33,7 +33,7 @@ Aplikasi ini dibangun menggunakan standar industri modern untuk pengembangan And
 ## 📹 Video Penjelasan Project
 
 Tonton video presentasi dan demo lengkap aplikasi kami di link berikut:
-👉 **[LINK VIDEO YOUTUBE / GOOGLE DRIVE ANDA DI SINI]**
+**[LINK VIDEO GOOGLE DRIVE DI SINI https://drive.google.com/file/d/1ECnMIMRnLIujvHwh9Ht4X_aI1C21sDIp/view?usp=sharing]**
 
 ---
 
